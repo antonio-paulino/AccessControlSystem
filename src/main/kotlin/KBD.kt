@@ -1,56 +1,60 @@
 import isel.leic.utils.Time
 
 fun main(){
-
+    KBD.init()
+    while (true){
+        println(KBD.waitKey(2000))
+    }
 }
 
 
 const val NONE = 0;
+const val kackmask = 128
+const val keyvalmask = 64
+const val keycodemask = 15
 
-var key_code = NONE
-var key_val = 0
+var keycode = NONE
+var keyval = 0
+val kbdmatrix = listOf('1','4','7','*','2','5','8','0','3','6','9','#')
 
-
-fun init(){
-    key_val = 0
-    key_code = NONE
-}
-
-fun getKey(): Char{
-    key_val = HAL.readBits(64)
-    key_code = HAL.readBits(15)
-    if(key_val == 1) {
-        HAL.setBits(128)
-        while (key_val == 1) {
-            key_val = HAL.readBits(64)
-        }
-        HAL.clrBits(64)
-        return when (key_code) {
-            0 -> '1'
-            1 -> '4'
-            2 -> '7'
-            3 -> '*'
-            4 -> '2'
-            5 -> '5'
-            6 -> '8'
-            7 -> '0'
-            8 -> '3'
-            9 -> '6'
-            10 -> '9'
-            11 -> '#'
-            else -> ' '
-        }
+object KBD {
+    fun init() {
+        keyval = 0
+        keycode = NONE
     }
-    else return NONE.toChar()
-}
 
+    fun getKey(): Char {
 
-fun waitKey(timeout: Long): Char{
-    var count = 0
-    while(timeout > count) {
-        count++
-        val key = getKey()
-        if (key != NONE.toChar()) return key
+        keyval = HAL.readBits(keyvalmask)
+        keycode = HAL.readBits(keycodemask)
+
+        if (HAL.isBit(keyvalmask)) {
+
+            HAL.setBits(kackmask) //Set kack to true
+            while (HAL.isBit(keyvalmask)) {
+                keyval = HAL.readBits(keyvalmask)
+            }
+            HAL.clrBits(kackmask) //Set kack to false after keyval is read as false
+
+            return if (keycode in kbdmatrix.indices) kbdmatrix[keycode]
+            else NONE.toChar()
+
+        } else return NONE.toChar()
     }
-    return NONE.toChar()
+
+
+    fun waitKey(timeout: Long): Char {
+
+        val starttime = System.currentTimeMillis()
+        var currtime = starttime
+
+        while (currtime - starttime < timeout) {
+            currtime = System.currentTimeMillis()
+            val key = getKey()
+            if (key != NONE.toChar()) return key
+        }
+
+        return NONE.toChar()
+    }
 }
+
