@@ -5,15 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="usbport.jar added">
-      <change afterPath="$PROJECT_DIR$/usbPort.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+    </list>
+    <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/kotlin/Main.kt">
+      <ranges>
+        <range start1="0" end1="2" start2="0" end2="1" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="3" end1="5" start2="2" end2="5" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="6" end1="10" start2="6" end2="7" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -34,9 +57,11 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "CodeWithMe",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -48,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678784900084</updated>
-      <workItem from="1678784901240" duration="1611000" />
+      <workItem from="1678784901240" duration="11999000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -57,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678785901078</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="usbport.jar added">
+      <created>1678786533457</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1678786533457</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -66,5 +98,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="usbport.jar added" />
     <option name="LAST_COMMIT_MESSAGE" value="usbport.jar added" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

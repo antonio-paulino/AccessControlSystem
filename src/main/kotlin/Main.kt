@@ -1,5 +1,4 @@
-import isel.leic.UsbPort
-import isel.leic.utils.*
+
 
 fun main(args: Array<String>) {
     println("Hello World!")
