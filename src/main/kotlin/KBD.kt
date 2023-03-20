@@ -12,27 +12,29 @@ object KBD {
     const val NONE = 0;
 
     var keycode = NONE
-    var keyval = 0
+    var keyval = false
     val kbdmatrix = listOf('1','4','7','*','2','5','8','0','3','6','9','#')
 
     fun init() {
-        keyval = 0
+        keyval = false
         keycode = NONE
     }
 
     fun getKey(): Char {
         //kackmask = 128, keyvalmask = 64, keycode mask = 15
 
-        keyval = HAL.readBits(64)
+        keyval = HAL.isBit(64)
         keycode = HAL.readBits(15)
 
-        if (HAL.isBit(64)) {
+        if (keyval) {
+            val key = if (keycode in kbdmatrix.indices) kbdmatrix[keycode] else NONE.toChar()
             HAL.setBits(128)
-            while (HAL.isBit(64)) {
-                keyval = HAL.readBits(64)
+            while (keyval) { 
+                keyval = HAL.isBit(64)
+                Thread.sleep(100)
             }
             HAL.clrBits(128)
-            return if (keycode in kbdmatrix.indices) kbdmatrix[keycode] else NONE.toChar()
+            return key
 
         } else return NONE.toChar()
     }
