@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="usbport.jar added">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
+    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="KeyBoard.kt and HAL.kt developent">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
     </list>
-    <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-    </list>
+    <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,14 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/kotlin/Main.kt">
-      <ranges>
-        <range start1="0" end1="2" start2="0" end2="1" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
-        <range start1="3" end1="5" start2="2" end2="5" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
-        <range start1="6" end1="10" start2="6" end2="7" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
-      </ranges>
-    </file>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ecd7b820-a89d-4976-b2a8-8d30a56f29b4" />
+        <option name="url" value="https://github.com/antonio-paulino/Door_Mechanism_Control.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,24 +47,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/anton/Desktop/ISEL/2-semestre/LIC/Software/usbPort.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "CodeWithMe",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/anton/Desktop/ISEL/2-semestre/LIC/Software/usbPort.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -74,6 +74,10 @@
       <option name="presentableId" value="Default" />
       <updated>1678784900084</updated>
       <workItem from="1678784901240" duration="11999000" />
+      <workItem from="1678806975788" duration="147000" />
+      <workItem from="1678828668779" duration="1387000" />
+      <workItem from="1679306765232" duration="57000" />
+      <workItem from="1679391332769" duration="998000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -89,15 +93,42 @@
       <option name="project" value="LOCAL" />
       <updated>1678786533457</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="KeyBoard.kt and HAL.kt developent">
+      <created>1678807081538</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1678807081538</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changes by Bernardo">
+      <created>1678807095170</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1678807095170</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="usbport.jar added" />
-    <option name="LAST_COMMIT_MESSAGE" value="usbport.jar added" />
+    <MESSAGE value="KeyBoard.kt and HAL.kt developent" />
+    <MESSAGE value="Changes by Bernardo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by Bernardo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

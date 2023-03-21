@@ -3,7 +3,7 @@ import isel.leic.utils.Time
 fun main(){
     KBD.init()
     while (true){
-        println(KBD.waitKey(2000))
+        print(KBD.waitKey(2000))
     }
 }
 
@@ -21,19 +21,21 @@ object KBD {
     }
 
     fun getKey(): Char {
-        //kackmask = 128, keyvalmask = 64, keycode mask = 15
 
-        keyval = HAL.isBit(64)
-        keycode = HAL.readBits(15)
+        val kvalmask = 64
+        val kackmask = 128
+        val kcodemask = 15
+        keyval = HAL.isBit(kvalmask)
+        keycode = HAL.readBits(kcodemask)
 
         if (keyval) {
             val key = if (keycode in kbdmatrix.indices) kbdmatrix[keycode] else NONE.toChar()
-            HAL.setBits(128)
-            while (keyval) { 
-                keyval = HAL.isBit(64)
-                Thread.sleep(100)
+            HAL.setBits(kackmask)
+            while (keyval) {
+                keyval = HAL.isBit(kvalmask)
+                Thread.sleep(10)
             }
-            HAL.clrBits(128)
+            HAL.clrBits(kackmask)
             return key
 
         } else return NONE.toChar()
@@ -44,7 +46,7 @@ object KBD {
 
         val starttime = System.currentTimeMillis()
 
-        while (System.currentTimeMillis() - starttime < timeout) {
+        while (System.currentTimeMillis()  < timeout + starttime) {
             val key = getKey()
             if (key != NONE.toChar()) return key
         }
