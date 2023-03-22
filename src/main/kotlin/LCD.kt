@@ -73,14 +73,12 @@ object LCD {
         val dataLow = data.and(15)
         // println(Integer.toBinaryString(dataLow))
         writeNibble(rs, dataHigh)
-         waitTimeMilli(1)
         writeNibble(rs, dataLow)
-         waitTimeMilli(1)
     }
 
     private fun writeCMD(data: Int) {
         writeByte(false,data)
-        waitTimeMilli(2)
+        waitTimeMilli(1)
     }
 
     private fun writeDATA(data: Int) {
