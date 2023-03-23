@@ -1,12 +1,36 @@
 fun main() {
+    LCD.write("1000")
+    waitTimeMilli(2000)
     LCD.init()
     KBD.init()
-    while (true) {
-        val key = KBD.waitKey(2000)
-        LCD.write(key)
-        println(key)
+     for (col in 1..16) {
+         LCD.cursor(1,col)
+        waitTimeMilli(50)
+     }
+    for (col in 1..16) {
+        LCD.cursor(2,col)
+       waitTimeMilli(50)
     }
-
+    LCD.clear()
+    var keyArr = arrayOf<Char>()
+    while (true) {
+        val key = KBD.waitKey(5000)
+        LCD.write(key)
+        if (key == '*') {
+            LCD.clear()
+            keyArr = arrayOf()
+        }
+        else if(key != 0.toChar()) keyArr += key
+        if (keyArr.size == 8) {
+            LCD.clear()
+            keyArr = arrayOf()
+            LCD.write("Welcome")
+            LCD.cursor(2,1)
+            LCD.write("Bernardo")
+            waitTimeMilli(2000)
+            LCD.clear()
+        }
+    }
 }
 
 object LCD {
@@ -17,45 +41,40 @@ object LCD {
     const val SERIALMASK = 64  //I6
     const val DATAMASK = 15 //Out0 - Out3
 
-     private fun waitTimeNano(time : Int) {
-         val endtime = System.nanoTime() + time
-         while (System.nanoTime() <= endtime) { }
-     }
-    private fun waitTimeMilli(time : Int) {
-        val endtime = System.currentTimeMillis() + time
-        while (System.currentTimeMillis() <= endtime) { }
-    }
-     private fun writeNibbleParallel(rs: Boolean, data: Int) {
-        if (!rs) {
-            HAL.clrBits(RSBITMASK)
-            waitTimeNano(250)
-        }
-        else {
-            HAL.setBits(RSBITMASK)
-            waitTimeNano(250)
-         }
-        HAL.writeBits(DATAMASK,data)
+
+    private fun Pulse() {
+        waitTimeNano(500)
         HAL.setBits(ENMASK)
         waitTimeNano(500)
         HAL.clrBits(ENMASK)
         waitTimeNano(500)
     }
 
+     private fun writeNibbleParallel(rs: Boolean, data: Int) {
+        if (!rs) {
+            HAL.clrBits(RSBITMASK)
+            waitTimeNano(100)
+        }
+        else {
+            HAL.setBits(RSBITMASK)
+            waitTimeNano(100)
+         }
+        HAL.writeBits(DATAMASK,data)
+        Pulse()
+    }
+
       private fun writeNibbleSerial(rs: Boolean, data: Int) {
           if (!rs) {
               HAL.clrBits(RSBITMASK)
-              waitTimeNano(250)
+              waitTimeNano(100)
           }
           else {
               HAL.setBits(RSBITMASK)
-              waitTimeNano(250)
+              waitTimeNano(100)
           }
-        for (i in 0..3) {
-            HAL.writeBits(DATAMASK and (1 shl (3 - i)), data)
-            HAL.setBits(ENMASK)
-            waitTimeNano(500)
-            HAL.clrBits(ENMASK)
-            waitTimeNano(500)
+        for (i in 3 downTo 0) {
+            HAL.writeBits(DATAMASK and (1.shl(i)), data)
+            Pulse()
         }
     }
 
@@ -69,16 +88,14 @@ object LCD {
 
      private fun writeByte(rs: Boolean, data: Int) {
         val dataHigh = data.shr(4)
-        //  println(Integer.toBinaryString(dataHigh))
         val dataLow = data.and(15)
-        // println(Integer.toBinaryString(dataLow))
         writeNibble(rs, dataHigh)
         writeNibble(rs, dataLow)
     }
 
     private fun writeCMD(data: Int) {
         writeByte(false,data)
-        waitTimeMilli(1)
+        waitTimeNano(100000)
     }
 
     private fun writeDATA(data: Int) {
@@ -87,13 +104,13 @@ object LCD {
 
 
     fun init() {
-        waitTimeMilli(50)
-        writeNibbleParallel(false,0b00000011)
         waitTimeMilli(15)
         writeNibbleParallel(false,0b00000011)
-        waitTimeMilli(10)
+        waitTimeMilli(5)
         writeNibbleParallel(false,0b00000011)
         waitTimeMilli(5)
+        writeNibbleParallel(false,0b00000011)
+        waitTimeMilli(1)
         writeNibbleParallel(false,0b00000010)
 
         writeCMD(0b00101000) // function set: 4-bit mode, 2 lines, 5x8 dots
@@ -102,32 +119,16 @@ object LCD {
         writeCMD(0b00000110) // entry mode set: increment cursor, no display shift
 
 
-        writeCMD(0b00001110) // display control: display on, cursor on, blink off
+        writeCMD(0b00001111) // display control: display on, cursor on, blink on
         clear()
     }
 
-    fun write(c: Char)  {
-        val datalow = when(c) {
-            in '0'..'9' -> c - '0'
-            '#' -> 3
-            '*' -> 10
-            else -> 0
-        }
-        val datahigh = when (c) {
-            in '0'..'9' -> 3
-            else -> 2
-        }
-        writeDATA(datahigh.shl(4).or(datalow))
-    }
+    fun write(c: Char)  = writeDATA(c.code)
 
     fun write(text: String) { for(char in text) { write(char) } }
 
 
-    fun cursor(line: Int, column: Int) {
+    fun cursor(line: Int, column: Int) = writeCMD(0b10000000 or (((line-1)shl(6) and 0b01000000) + column - 1))
+    fun clear() = writeCMD(1) // clear display
 
-    }
-
-    fun clear() {
-        writeCMD(1) // clear display
-    }
 }

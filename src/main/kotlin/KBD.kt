@@ -9,8 +9,8 @@ fun main(){
 object KBD {
 
     const val NONE = 0;
-    const val KVALMASK = 64
-    const val KACKMASK = 128
+    const val KVALMASK = 16
+    const val KACKMASK = 64
     const val KCODEMASK = 15
 
     var keycode = NONE
