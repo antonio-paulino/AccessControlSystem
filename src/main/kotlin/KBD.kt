@@ -35,7 +35,7 @@ object KBD {
             while (keyval) {
 
                 keyval = HAL.isBit(KVALMASK)
-                Thread.sleep(50)
+                waitTimeMilli(50)
 
             }
             HAL.clrBits(KACKMASK)

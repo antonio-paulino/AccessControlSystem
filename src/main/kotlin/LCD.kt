@@ -1,6 +1,4 @@
 fun main() {
-    LCD.write("1000")
-    waitTimeMilli(2000)
     LCD.init()
     KBD.init()
      for (col in 1..16) {
@@ -24,9 +22,9 @@ fun main() {
         if (keyArr.size == 8) {
             LCD.clear()
             keyArr = arrayOf()
-            LCD.write("Welcome")
+            LCD.write("Hello World")
             LCD.cursor(2,1)
-            LCD.write("Bernardo")
+            LCD.write("Good Morning")
             waitTimeMilli(2000)
             LCD.clear()
         }
@@ -38,7 +36,7 @@ object LCD {
     private const val COLS = 16
     const val RSBITMASK = 16 // Out4
     const val ENMASK = 32 // Out5
-    const val SERIALMASK = 64  //I6
+    const val SERIALMASK = 16  //I6
     const val DATAMASK = 15 //Out0 - Out3
 
 
