@@ -1,32 +1,31 @@
 fun main() {
+    LCD.write('C')
+    waitTimeMilli(1000)
     LCD.init()
     KBD.init()
-     for (col in 1..16) {
-         LCD.cursor(1,col)
+    for (col in 1..16) {
+        LCD.cursor(1,col)
         waitTimeMilli(50)
-     }
+    }
     for (col in 1..16) {
         LCD.cursor(2,col)
-       waitTimeMilli(50)
+        waitTimeMilli(50)
     }
     LCD.clear()
     var keyArr = arrayOf<Char>()
     while (true) {
         val key = KBD.waitKey(5000)
+        println(key)
         LCD.write(key)
         if (key == '*') {
             LCD.clear()
             keyArr = arrayOf()
         }
         else if(key != 0.toChar()) keyArr += key
-        if (keyArr.size == 8) {
+        if (keyArr.size == 10) {
             LCD.clear()
             keyArr = arrayOf()
-            LCD.write("Hello World")
-            LCD.cursor(2,1)
-            LCD.write("Good Morning")
             waitTimeMilli(2000)
-            LCD.clear()
         }
     }
 }
@@ -36,7 +35,7 @@ object LCD {
     private const val COLS = 16
     const val RSBITMASK = 16 // Out4
     const val ENMASK = 32 // Out5
-    const val SERIALMASK = 16  //I6
+    const val SERIALMASK = 128 //O7
     const val DATAMASK = 15 //Out0 - Out3
 
 
@@ -48,7 +47,7 @@ object LCD {
         waitTimeNano(500)
     }
 
-     private fun writeNibbleParallel(rs: Boolean, data: Int) {
+    private fun writeNibbleParallel(rs: Boolean, data: Int) {
         if (!rs) {
             HAL.clrBits(RSBITMASK)
             waitTimeNano(100)
@@ -56,27 +55,27 @@ object LCD {
         else {
             HAL.setBits(RSBITMASK)
             waitTimeNano(100)
-         }
+        }
         HAL.writeBits(DATAMASK,data)
         Pulse()
     }
 
-      private fun writeNibbleSerial(rs: Boolean, data: Int) {
-          if (!rs) {
-              HAL.clrBits(RSBITMASK)
-              waitTimeNano(100)
-          }
-          else {
-              HAL.setBits(RSBITMASK)
-              waitTimeNano(100)
-          }
+    private fun writeNibbleSerial(rs: Boolean, data: Int) {
+        if (!rs) {
+            HAL.clrBits(RSBITMASK)
+            waitTimeNano(100)
+        }
+        else {
+            HAL.setBits(RSBITMASK)
+            waitTimeNano(100)
+        }
         for (i in 3 downTo 0) {
             HAL.writeBits(DATAMASK and (1.shl(i)), data)
             Pulse()
         }
     }
 
-     private fun writeNibble(rs: Boolean, data: Int) {
+    private fun writeNibble(rs: Boolean, data: Int) {
         if (HAL.isBit(SERIALMASK)) {
             writeNibbleSerial(rs, data)
         } else {
@@ -84,7 +83,7 @@ object LCD {
         }
     }
 
-     private fun writeByte(rs: Boolean, data: Int) {
+    private fun writeByte(rs: Boolean, data: Int) {
         val dataHigh = data.shr(4)
         val dataLow = data.and(15)
         writeNibble(rs, dataHigh)
