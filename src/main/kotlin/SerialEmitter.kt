@@ -2,9 +2,7 @@ fun main() {
 
 }
 
-
-
-object SerialEmitter { // Envia tramas para os diferentes módulos Serial Receiver.
+object SerialEmitter {
     enum class Destination {LCD, DOOR}
     const val LCDSELMASK = 1
     const val SDXMASK = 2
@@ -24,7 +22,6 @@ object SerialEmitter { // Envia tramas para os diferentes módulos Serial Receiv
             HAL.setBits(SCLKMASK)
             waitTimeNano(100)
             HAL.clrBits(SCLKMASK)
-            waitTimeNano(100)
         }
     }
     fun isBusy(): Boolean {
