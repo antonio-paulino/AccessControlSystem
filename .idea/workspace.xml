@@ -4,9 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="KeyBoard.kt and HAL.kt developent">
+    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="KeyBoard.kt and HAL.kt Update">
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/usbPort.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/usbPort.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Software.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Software.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USB_PORT.properties" beforeDir="false" afterPath="$PROJECT_DIR$/USB_PORT.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware.simul" beforeDir="false" afterPath="$PROJECT_DIR$/hardware.simul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
     </list>
     <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
     <option name="SHOW_DIALOG" value="false" />

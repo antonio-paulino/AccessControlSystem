@@ -14,14 +14,22 @@ object SerialEmitter {
     }
     fun send(addr: Destination, data: Int) {
         HAL.writeBits(LCDSELMASK, addr.ordinal)
-        waitTimeNano(100)
-        for (i in 4 downTo 0) {
-            val sdx = (1.shl(i) and data).shr(i)
+        waitTimeNano(500)
+        var sdx = (1.shl(4) and data).shr(4)
+        HAL.writeBits(SDXMASK, sdx.shl(1))
+        waitTimeNano(500)
+        HAL.setBits(SCLKMASK)
+        waitTimeNano(500)
+        HAL.clrBits(SCLKMASK)
+        waitTimeNano(500)
+        for (i in 0 .. 3) {
+            sdx = (1.shl(i) and data).shr(i)
             HAL.writeBits(SDXMASK, sdx.shl(1))
-            waitTimeNano(100)
+            waitTimeNano(500)
             HAL.setBits(SCLKMASK)
-            waitTimeNano(100)
+            waitTimeNano(500)
             HAL.clrBits(SCLKMASK)
+            waitTimeNano(500)
         }
     }
     fun isBusy(): Boolean {
