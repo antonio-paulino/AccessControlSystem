@@ -92,7 +92,7 @@ object LCD {
 
     private fun writeCMD(data: Int) {
         writeByte(false,data)
-        waitTimeNano(100000)
+        waitTimeMilli(2)
     }
 
     private fun writeDATA(data: Int) {
@@ -101,13 +101,13 @@ object LCD {
 
 
     fun init() {
+        waitTimeMilli(30)
+        writeNibbleParallel(false,0b00000011)
+        waitTimeMilli(15)
+        writeNibbleParallel(false,0b00000011)
         waitTimeMilli(15)
         writeNibbleParallel(false,0b00000011)
         waitTimeMilli(5)
-        writeNibbleParallel(false,0b00000011)
-        waitTimeMilli(5)
-        writeNibbleParallel(false,0b00000011)
-        waitTimeMilli(1)
         writeNibbleParallel(false,0b00000010)
 
         writeCMD(0b00101000) // function set: 4-bit mode, 2 lines, 5x8 dots
