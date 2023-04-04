@@ -32,12 +32,21 @@ object Users{
         while (validLine(lineargs))
     }
 
-    fun addUser() {
+    fun addUser(firstname: String, lastname: String, pin: String, message: String) {
+        val outputfile = createWriter("Users.txt")
 
+        for (i in 0..userlist.size-1) {
+         if(userlist[i] == null) {
+             val uidstring = i.toString()
+             val uid = if (uidstring.length == 1) "00$uidstring" else if (uidstring.length == 2) "0$uidstring" else uidstring
+             val newUser = userlist.set(i, User(uid, firstname = firstname, lastname = lastname, pin = pin, message = "None"))
+
+         }
+        }
     }
 
     fun removeUser() {
-
+        val outputfile = createReader("Users.txt")
     }
 
     fun setMsg(){

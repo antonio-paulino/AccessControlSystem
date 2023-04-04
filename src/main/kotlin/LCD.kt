@@ -102,13 +102,13 @@ object LCD {
 
     fun init() {
         waitTimeMilli(30)
-        writeNibbleParallel(false,0b00000011)
+        writeNibble(false,0b00000011)
         waitTimeMilli(15)
-        writeNibbleParallel(false,0b00000011)
+        writeNibble(false,0b00000011)
         waitTimeMilli(15)
-        writeNibbleParallel(false,0b00000011)
+        writeNibble(false,0b00000011)
         waitTimeMilli(5)
-        writeNibbleParallel(false,0b00000010)
+        writeNibble(false,0b00000010)
 
         writeCMD(0b00101000) // function set: 4-bit mode, 2 lines, 5x8 dots
         writeCMD(0b00001000) // display control : display off, cursor off, blink off

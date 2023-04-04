@@ -1,5 +1,7 @@
-fun main() {
+import java.io.Serial
 
+fun main() { HAL.init()
+    SerialEmitter.send(SerialEmitter.Destination.LCD, 0x15)
 }
 
 object SerialEmitter {

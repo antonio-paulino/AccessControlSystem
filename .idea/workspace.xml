@@ -4,25 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="KeyBoard.kt and HAL.kt Update">
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/usbPort.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/usbPort.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="LCD.kt and SerialEmitter.kt Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Software.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Software.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USB_PORT.properties" beforeDir="false" afterPath="$PROJECT_DIR$/USB_PORT.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware.simul" beforeDir="false" afterPath="$PROJECT_DIR$/hardware.simul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
     </list>
-    <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
+    <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo">
+      <change beforePath="$PROJECT_DIR$/Users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Users.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +46,43 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/kotlin/Users.kt">
+      <ranges>
+        <range start1="21" end1="24" start2="21" end2="22" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="25" end1="27" start2="23" end2="24" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="30" end1="32" start2="27" end2="37" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="34" end1="35" start2="39" end2="41" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="36" end1="36" start2="42" end2="50" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="37" end1="37" start2="51" end2="53" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="39" end1="40" start2="55" end2="56" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="42" end1="58" start2="58" end2="58" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt">
+      <ranges>
+        <range start1="0" end1="1" start2="0" end2="1" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="2" end1="2" start2="2" end2="4" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="7" end1="8" start2="9" end2="10" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="18" end1="18" start2="20" end2="30" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="19" end1="20" start2="31" end2="33" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="21" end1="21" start2="34" end2="35" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="26" end1="26" start2="40" end2="41" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="27" end1="27" start2="42" end2="43" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/kotlin/LCD.kt">
+      <ranges>
+        <range start1="1" end1="3" start2="1" end2="1" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="63" end1="75" start2="61" end2="63" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="78" end1="83" start2="66" end2="72" changelist="e04be746-7ebb-4027-b91d-df2637e65338" />
+        <range start1="104" end1="105" start2="93" end2="94" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="106" end1="107" start2="95" end2="96" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="108" end1="109" start2="97" end2="98" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+        <range start1="110" end1="111" start2="99" end2="100" changelist="1fdd6023-2647-4077-997a-5870780d8ccf" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -61,24 +92,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/anton/Desktop/ISEL/2-semestre/LIC/Software/usbPort.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/anton/Desktop/ISEL/2-semestre/LIC/Software/usbPort.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "CodeWithMe",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -92,6 +125,10 @@
       <workItem from="1678828668779" duration="1387000" />
       <workItem from="1679306765232" duration="57000" />
       <workItem from="1679391332769" duration="998000" />
+      <workItem from="1680252877656" duration="411000" />
+      <workItem from="1680274435994" duration="224000" />
+      <workItem from="1680275260166" duration="9000" />
+      <workItem from="1680595535732" duration="8233000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -121,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678807095170</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="LCD.kt and SerialEmitter.kt Update">
+      <created>1680252928777</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680252928777</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,7 +186,19 @@
     <MESSAGE value="usbport.jar added" />
     <MESSAGE value="KeyBoard.kt and HAL.kt developent" />
     <MESSAGE value="Changes by Bernardo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by Bernardo" />
+    <MESSAGE value="LCD.kt and SerialEmitter.kt Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="LCD.kt and SerialEmitter.kt Update" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt</url>
+          <line>3</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
