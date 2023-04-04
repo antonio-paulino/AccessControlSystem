@@ -19,17 +19,22 @@ fun createWriter(fileName: String?): PrintWriter {
 
 
 object Users{
-
-
-    data class User(val UID : Int, var firstname : String?, var lastname : String?,  var pin: Int?, var message : String?)
+    data class User(val UIN : String, var firstname : String, var lastname : String,  var pin: String, var message : String)
     const val SIZE = 1000
-    var userlist = Array(SIZE) {User(it, null, null , null, null)}
-
+    var userlist = arrayOfNulls<User>(SIZE)
 
     fun init() {
         val fileread = createReader("Users.txt")
-        var lineargs = fileread.readLine().split(" ")
-        while (validLine(lineargs))
+        var line : String? = fileread.readLine()
+        while (line != null) {
+            var lineargs = line.split(";")
+            val uid = if (lineargs[1].length == 1) "00${lineargs[1]}" else if(lineargs[1].length == 2) "0${lineargs[1]}" else lineargs[1]
+            userlist[uid.toInt()] = User(uid, lineargs[2], lineargs[4], lineargs[6], lineargs[8])
+            line = fileread.readLine()
+            lineargs = line.split("")
+
+        }
+        fileread.close()
     }
 
     fun addUser(firstname: String, lastname: String, pin: String, message: String) {
@@ -45,24 +50,10 @@ object Users{
         }
     }
 
+    //fun User.addMsg =
+
     fun removeUser() {
         val outputfile = createReader("Users.txt")
     }
 
-    fun setMsg(){
-
-    }
-
-
-
-    fun setPin(){
-
-    }
-
-    private fun validLine(lineargs : List<String>) =
-            lineargs?.get(1) != null ||
-            lineargs?.get(3) != null ||
-            lineargs?.get(4) != null ||
-            lineargs?.get(6) != null ||
-            lineargs?.get(8) != null
 }

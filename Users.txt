@@ -1,1 +1,0 @@
-UID: 1 Name: 3 4 PIN: 6 Message: 8

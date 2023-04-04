@@ -13,19 +13,32 @@ object SerialEmitter {
     const val SCLKMASK = 128
     const val BUSYMASK = 32
     var isbusy = false
+
+
     fun init() {
         isbusy = false
     }
+
+    private fun clkPulse () {
+        waitTimeNano(DELAY)
+        HAL.setBits(SCLKMASK)
+        waitTimeNano(DELAY)
+        HAL.clrBits(SCLKMASK)
+        waitTimeNano(DELAY)
+
+    }
+
     fun send(addr: Destination, data: Int) {
         HAL.writeBits(LCDSELMASK, addr.ordinal)
         waitTimeNano(DELAY)
-        for (i in 4 downTo 0) {
+        HAL.writeBits(SDXMASK, data.shr(4).shl(1))
+        clkPulse()
+        for (i in 0 .. 3) {
+            waitTimeNano(DELAY)
             val sdx = (1.shl(i) and data).shr(i)
+            println(Integer.toBinaryString((1.shl(i) and data).shr(i).shl(1)))
             HAL.writeBits(SDXMASK, sdx.shl(1))
-            waitTimeNano(DELAY)
-            HAL.setBits(SCLKMASK)
-            waitTimeNano(DELAY)
-            HAL.clrBits(SCLKMASK)
+            clkPulse()
         }
     }
     fun isBusy(): Boolean {

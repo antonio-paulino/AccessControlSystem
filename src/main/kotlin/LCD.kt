@@ -1,6 +1,4 @@
 fun main() {
-    LCD.write('C')
-    waitTimeMilli(1000)
     LCD.init()
     KBD.init()
     for (col in 1..16) {
@@ -61,26 +59,17 @@ object LCD {
     }
 
     private fun writeNibbleSerial(rs: Boolean, data: Int) {
-        if (!rs) {
-            HAL.clrBits(RSBITMASK)
-            waitTimeNano(100)
-        }
-        else {
-            HAL.setBits(RSBITMASK)
-            waitTimeNano(100)
-        }
-        for (i in 3 downTo 0) {
-            HAL.writeBits(DATAMASK and (1.shl(i)), data)
-            Pulse()
-        }
+        val datasend = if(rs) 0b10000 or data else 0b00000 or data
+        SerialEmitter.send(SerialEmitter.Destination.LCD, datasend)
     }
 
     private fun writeNibble(rs: Boolean, data: Int) {
-        if (HAL.isBit(SERIALMASK)) {
-            writeNibbleSerial(rs, data)
-        } else {
-            writeNibbleParallel(rs, data)
-        }
+       // if (HAL.isBit(SERIALMASK)) {
+       //     writeNibbleSerial(rs, data)h
+       // } else {
+       //    writeNibbleParallel(rs, data)
+       // }
+        writeNibbleSerial(rs,data)
     }
 
     private fun writeByte(rs: Boolean, data: Int) {
