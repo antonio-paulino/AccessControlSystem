@@ -1,59 +1,63 @@
-import java.io.*
-import java.util.*
 import java.io.BufferedReader
 import java.io.FileReader
 import java.io.PrintWriter
 
-
-fun main(){
-
+fun main() {
+    Users.init()
+   // Users.addUser("J", "J", 80000)
+    Users.removeUser(0)
+    Users.close()
 }
 
-fun createReader(fileName: String): BufferedReader {
-    return BufferedReader(FileReader(fileName))
-}
+fun createReader(fileName: String): BufferedReader { return BufferedReader(FileReader(fileName)) }
 
-fun createWriter(fileName: String?): PrintWriter {
-    return PrintWriter(fileName)
-}
+fun createWriter(fileName: String): PrintWriter { return PrintWriter(fileName) }
 
+object Users {
+    data class User(val UIN: Int, var pin: Int, var firstname: String, var lastname: String, var message: String)
 
-object Users{
-    data class User(val UIN : String, var firstname : String, var lastname : String,  var pin: String, var message : String)
     const val SIZE = 1000
     var userlist = arrayOfNulls<User>(SIZE)
 
     fun init() {
         val fileread = createReader("Users.txt")
-        var line : String? = fileread.readLine()
+        var line: String? = fileread.readLine()
         while (line != null) {
-            var lineargs = line.split(";")
-            val uid = if (lineargs[1].length == 1) "00${lineargs[1]}" else if(lineargs[1].length == 2) "0${lineargs[1]}" else lineargs[1]
-            userlist[uid.toInt()] = User(uid, lineargs[2], lineargs[4], lineargs[6], lineargs[8])
+            val lineargs = line.split(";")
+            val (uin, pin, firstname, lastname, message) = lineargs
+            val uin_Int = uin.toInt()
+            userlist[uin_Int] = User(uin_Int, pin.toInt(), firstname, lastname, message)
             line = fileread.readLine()
-            lineargs = line.split("")
-
         }
         fileread.close()
     }
 
-    fun addUser(firstname: String, lastname: String, pin: String, message: String) {
-        val outputfile = createWriter("Users.txt")
-
-        for (i in 0..userlist.size-1) {
-         if(userlist[i] == null) {
-             val uidstring = i.toString()
-             val uid = if (uidstring.length == 1) "00$uidstring" else if (uidstring.length == 2) "0$uidstring" else uidstring
-             val newUser = userlist.set(i, User(uid, firstname = firstname, lastname = lastname, pin = pin, message = "None"))
-
-         }
+    fun addUser(firstname: String, lastname: String, pin: Int) {
+        var uin = 0
+        while (userlist[uin] != null) { uin++ }
+        if (uin < SIZE) {
+            userlist[uin] = User(uin, pin, firstname, lastname, "NONE")
         }
     }
 
-    //fun User.addMsg =
 
-    fun removeUser() {
-        val outputfile = createReader("Users.txt")
+    fun removeUser(UIN: Int) { userlist[UIN] = null }
+
+    fun setMsg(message: String, UIN: String) {
+        val idx = UIN.toInt()
+        if (userlist[idx] == null)
+            println("Utilizador não existente")
+        else userlist[idx] = userlist[idx]!!.copy(message = message)
     }
 
+    fun close() {
+        val outputfile = createWriter("Users.txt")
+        for (uin in 0 until SIZE) {
+            val user = userlist[uin]
+            if(user != null) {
+                outputfile.println("${user.UIN};${user.pin};${user.firstname};${user.lastname};${user.message};")
+            }
+        }
+        outputfile.close()
+    }
 }
