@@ -2,7 +2,7 @@ import java.io.BufferedReader
 import java.io.FileReader
 import java.io.PrintWriter
 
-data class User(val UIN: Int, var pin: Int, var firstname: String, var lastname: String, var message: String)
+data class User(val UIN: Int, var pin: Int, var firstname: String, var lastname: String, var message: String?)
 
 fun main() {
     Users.init()
@@ -39,7 +39,7 @@ object Users {
                 uin++
             }
             if (uin < SIZE) {
-                userlist[uin] = User(uin, pin, firstname, lastname, "NONE")
+                userlist[uin] = User(uin, pin, firstname, lastname, null)
             }
         }
     }
@@ -47,14 +47,9 @@ object Users {
 
     fun removeUser(UIN: Int) { userlist[UIN] = null }
 
-    fun setMsg(message: String, UIN: String) {
-        if (message.length > 16) println("A sua mensagem excede a quantidade de dígitos suportada pelo LCD")
-        else {
-            val idx = UIN.toInt()
-            if (userlist[idx] == null)
-                println("Utilizador não existente")
-            else userlist[idx] = userlist[idx]!!.copy(message = message)
-        }
+    fun setMsg(message: String, UIN: Int) {
+        if (message.length > 16) println("A sua mensagem excede a quantidade de dígitos suportada pelo LCD (16)")
+        else userlist[UIN] = userlist[UIN]!!.copy(message = message)
     }
 
     fun close() {
