@@ -12,6 +12,7 @@ object KBD {
     const val KVALMASK = 16
     const val KACKMASK = 64
     const val KCODEMASK = 15
+    const val CHECKDELAY = 50
 
     var keycode = NONE
     var keyval = false
@@ -35,7 +36,7 @@ object KBD {
             while (keyval) {
 
                 keyval = HAL.isBit(KVALMASK)
-                waitTimeMilli(50)
+                waitTimeMilli(CHECKDELAY)
 
             }
             HAL.clrBits(KACKMASK)

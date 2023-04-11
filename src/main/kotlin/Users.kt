@@ -2,6 +2,8 @@ import java.io.BufferedReader
 import java.io.FileReader
 import java.io.PrintWriter
 
+data class User(val UIN: Int, var pin: Int, var firstname: String, var lastname: String, var message: String)
+
 fun main() {
     Users.init()
    // Users.addUser("J", "J", 80000)
@@ -9,18 +11,15 @@ fun main() {
     Users.close()
 }
 
-fun createReader(fileName: String): BufferedReader { return BufferedReader(FileReader(fileName)) }
-
-fun createWriter(fileName: String): PrintWriter { return PrintWriter(fileName) }
 
 object Users {
-    data class User(val UIN: Int, var pin: Int, var firstname: String, var lastname: String, var message: String)
+
 
     const val SIZE = 1000
     var userlist = arrayOfNulls<User>(SIZE)
 
     fun init() {
-        val fileread = createReader("Users.txt")
+        val fileread = FileAccess.createReader("Users.txt")
         var line: String? = fileread.readLine()
         while (line != null) {
             val lineargs = line.split(";")
@@ -33,10 +32,15 @@ object Users {
     }
 
     fun addUser(firstname: String, lastname: String, pin: Int) {
-        var uin = 0
-        while (userlist[uin] != null) { uin++ }
-        if (uin < SIZE) {
-            userlist[uin] = User(uin, pin, firstname, lastname, "NONE")
+        if (pin > 99999) println("O Pin não deve exceder 5 dígitos")
+        else {
+            var uin = 0
+            while (userlist[uin] != null) {
+                uin++
+            }
+            if (uin < SIZE) {
+                userlist[uin] = User(uin, pin, firstname, lastname, "NONE")
+            }
         }
     }
 
@@ -44,14 +48,17 @@ object Users {
     fun removeUser(UIN: Int) { userlist[UIN] = null }
 
     fun setMsg(message: String, UIN: String) {
-        val idx = UIN.toInt()
-        if (userlist[idx] == null)
-            println("Utilizador não existente")
-        else userlist[idx] = userlist[idx]!!.copy(message = message)
+        if (message.length > 16) println("A sua mensagem excede a quantidade de dígitos suportada pelo LCD")
+        else {
+            val idx = UIN.toInt()
+            if (userlist[idx] == null)
+                println("Utilizador não existente")
+            else userlist[idx] = userlist[idx]!!.copy(message = message)
+        }
     }
 
     fun close() {
-        val outputfile = createWriter("Users.txt")
+        val outputfile = FileAccess.createWriter("Users.txt")
         for (uin in 0 until SIZE) {
             val user = userlist[uin]
             if(user != null) {

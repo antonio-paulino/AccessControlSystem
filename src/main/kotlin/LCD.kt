@@ -10,21 +10,13 @@ fun main() {
         waitTimeMilli(50)
     }
     LCD.clear()
-    var keyArr = arrayOf<Char>()
     while (true) {
-        val key = KBD.waitKey(5000)
-        println(key)
-        LCD.write(key)
-        if (key == '*') {
-            LCD.clear()
-            keyArr = arrayOf()
-        }
-        else if(key != 0.toChar()) keyArr += key
-        if (keyArr.size == 10) {
-            LCD.clear()
-            keyArr = arrayOf()
-            waitTimeMilli(2000)
-        }
+        TUI.writeCenter("Insira o UIN", 1)
+        val UIN = TUI.read(3, false)
+        LCD.clear()
+        TUI.writeCenter("Insira o PIN", 1)
+        val PIN = TUI.read(5, true)
+        LCD.clear()
     }
 }
 
@@ -35,24 +27,27 @@ object LCD {
     const val ENMASK = 32 // Out5
     const val SERIALMASK = 128 //O7
     const val DATAMASK = 15 //Out0 - Out3
-
+    const val PULSEDELAY = 500
+    const val RISEDELAY = 100
+    const val INITDELAY = 30
+    const val CMDDELAY = 2
 
     private fun Pulse() {
-        waitTimeNano(500)
+        waitTimeNano(PULSEDELAY)
         HAL.setBits(ENMASK)
-        waitTimeNano(500)
+        waitTimeNano(PULSEDELAY)
         HAL.clrBits(ENMASK)
-        waitTimeNano(500)
+        waitTimeNano(PULSEDELAY)
     }
 
     private fun writeNibbleParallel(rs: Boolean, data: Int) {
         if (!rs) {
             HAL.clrBits(RSBITMASK)
-            waitTimeNano(100)
+            waitTimeNano(RISEDELAY)
         }
         else {
             HAL.setBits(RSBITMASK)
-            waitTimeNano(100)
+            waitTimeNano(RISEDELAY)
         }
         HAL.writeBits(DATAMASK,data)
         Pulse()
@@ -69,7 +64,7 @@ object LCD {
        // } else {
        //    writeNibbleParallel(rs, data)
        // }
-        writeNibbleSerial(rs,data)
+        writeNibbleParallel(rs,data)
     }
 
     private fun writeByte(rs: Boolean, data: Int) {
@@ -81,7 +76,7 @@ object LCD {
 
     private fun writeCMD(data: Int) {
         writeByte(false,data)
-        waitTimeMilli(2)
+        waitTimeMilli(CMDDELAY)
     }
 
     private fun writeDATA(data: Int) {
@@ -90,13 +85,13 @@ object LCD {
 
 
     fun init() {
-        waitTimeMilli(30)
+        waitTimeMilli(INITDELAY)
         writeNibble(false,0b00000011)
-        waitTimeMilli(15)
+        waitTimeMilli(INITDELAY/2)
         writeNibble(false,0b00000011)
-        waitTimeMilli(15)
+        waitTimeMilli(INITDELAY/2)
         writeNibble(false,0b00000011)
-        waitTimeMilli(5)
+        waitTimeMilli(INITDELAY/6)
         writeNibble(false,0b00000010)
 
         writeCMD(0b00101000) // function set: 4-bit mode, 2 lines, 5x8 dots
@@ -107,6 +102,7 @@ object LCD {
 
         writeCMD(0b00001111) // display control: display on, cursor on, blink on
         clear()
+
     }
 
     fun write(c: Char)  = writeDATA(c.code)
