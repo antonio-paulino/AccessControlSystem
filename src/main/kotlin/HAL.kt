@@ -27,7 +27,7 @@ object HAL {
 
     fun readBits(mask: Int): Int = UsbPort.read().and(mask)
 
-    fun isBit(mask: Int): Boolean = readBits(mask).and(mask) > 0
+    fun isBit(mask: Int): Boolean = readBits(mask) > 0
 
     fun setBits(mask: Int) {
         val_write = (mask.or(val_write))

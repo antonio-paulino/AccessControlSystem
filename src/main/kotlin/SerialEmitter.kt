@@ -7,12 +7,12 @@ fun main() { HAL.init()
 object SerialEmitter {
 
     enum class Destination {LCD, DOOR}
-    const val DELAY = 100
-    const val LCDSELMASK = 1
-    const val SDXMASK = 2
-    const val SCLKMASK = 128
-    const val BUSYMASK = 32
-    var isbusy = false
+    private const val DELAY = 100
+    private const val LCDSELMASK = 1
+    private const val SDXMASK = 2
+    private const val SCLKMASK = 128
+    private const val BUSYMASK = 32
+    private var isbusy = false
 
 
     fun init() {

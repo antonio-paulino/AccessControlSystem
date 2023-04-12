@@ -12,8 +12,7 @@ object TUI {
     fun read(len : Int, pin : Boolean) : Int? {
         var word = ""
         val coloffset = (COLS - len) / 2 + 1
-        LCD.cursor(2, coloffset)
-
+        clearDigits(coloffset, len)
 
         while (word.length < len) {
             val key = KBD.waitKey(KBDTIMEOUT)
@@ -41,7 +40,7 @@ private fun clearDigits(coloffset: Int, len : Int) {
     LCD.cursor(2, coloffset)
 
     for (i in 1..len){
-        LCD.write(" ")
+        LCD.write("-")
     }
 
     LCD.cursor(2, coloffset)

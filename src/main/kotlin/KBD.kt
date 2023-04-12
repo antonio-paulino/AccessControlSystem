@@ -12,7 +12,7 @@ object KBD {
     const val KVALMASK = 16
     const val KACKMASK = 64
     const val KCODEMASK = 15
-    const val CHECKDELAY = 50
+    const val CHECKDELAY = 25
 
     var keycode = NONE
     var keyval = false
