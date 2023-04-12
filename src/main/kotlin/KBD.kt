@@ -26,9 +26,9 @@ object KBD {
     fun getKey(): Char {
 
         keyval = HAL.isBit(KVALMASK)
-        keycode = HAL.readBits(KCODEMASK)
 
         if (keyval) {
+            keycode = HAL.readBits(KCODEMASK)
 
             val key = if (keycode in kbdmatrix.indices) kbdmatrix[keycode] else NONE.toChar()
             HAL.setBits(KACKMASK)
