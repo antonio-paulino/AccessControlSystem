@@ -64,7 +64,7 @@ object LCD {
        // } else {
        //    writeNibbleParallel(rs, data)
        // }
-        writeNibbleParallel(rs,data)
+        writeNibbleSerial(rs,data)
     }
 
     private fun writeByte(rs: Boolean, data: Int) {
