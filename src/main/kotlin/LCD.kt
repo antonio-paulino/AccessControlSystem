@@ -11,11 +11,10 @@ fun main() {
     }
     LCD.clear()
     while (true) {
-        TUI.writeCenter("Insira o UIN", 1)
-        val UIN = TUI.read(3, false)
-        LCD.clear()
-        TUI.writeCenter("Insira o PIN", 1)
-        val PIN = TUI.read(5, true)
+        TUI.queryOrWrite(LogFile.getDate(), TUI.ALIGN.Center, TUI.LINES.First)
+        TUI.queryOrWrite("UIN:  ", TUI.ALIGN.Center, TUI.LINES.Second)
+        val UIN = TUI.queryOrWrite("Enter UIN:", TUI.ALIGN.Center, TUI.LINES.Second, TUI.ENTRY.UIN)
+        val PIN = TUI.queryOrWrite("Enter PIN:", TUI.ALIGN.Center, TUI.LINES.Second, TUI.ENTRY.PIN)
         LCD.clear()
     }
 }
@@ -23,14 +22,14 @@ fun main() {
 object LCD {
     private const val LINES = 2
     private const val COLS = 16
-    const val RSBITMASK = 16 // Out4
-    const val ENMASK = 32 // Out5
-    const val SERIALMASK = 128 //O7
-    const val DATAMASK = 15 //Out0 - Out3
-    const val PULSEDELAY = 500
-    const val RISEDELAY = 100
-    const val INITDELAY = 30
-    const val CMDDELAY = 2
+    private const val RSBITMASK = 16 // Out4
+    private const val ENMASK = 32 // Out5
+    private const val SERIALMASK = 128 //O7
+    private const val DATAMASK = 15 //Out0 - Out3
+    private const val PULSEDELAY = 500
+    private const val RISEDELAY = 100
+    private const val INITDELAY = 30
+    private const val CMDDELAY = 2
 
     private fun Pulse() {
         waitTimeNano(PULSEDELAY)
@@ -100,7 +99,7 @@ object LCD {
         writeCMD(0b00000110) // entry mode set: increment cursor, no display shift
 
 
-        writeCMD(0b00001111) // display control: display on, cursor on, blink on
+        writeCMD(0b00001100) // display control: display on, cursor off, blink off
         clear()
 
     }

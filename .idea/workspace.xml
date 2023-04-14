@@ -4,10 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="SerialEmitter.kt fix">
+    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="TUI, Users, M">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USB_PORT.properties" beforeDir="false" afterPath="$PROJECT_DIR$/USB_PORT.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Users.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/M.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/M.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" afterDir="false" />
     </list>
     <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +36,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -55,7 +72,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/anton/Desktop/ISEL/2-semestre/LIC/Software/usbPort.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Bernardo/Desktop/isel/semestre2/Door_Mechanism_Control&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -68,6 +85,20 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="LCDKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LCDKt" />
+      <module name="Software" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.LCDKt" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -86,6 +117,17 @@
       <workItem from="1680275260166" duration="9000" />
       <workItem from="1680595535732" duration="9303000" />
       <workItem from="1680605127238" duration="3171000" />
+      <workItem from="1681208106417" duration="4557000" />
+      <workItem from="1681249485052" duration="160000" />
+      <workItem from="1681284646913" duration="722000" />
+      <workItem from="1681285613151" duration="549000" />
+      <workItem from="1681337277466" duration="132000" />
+      <workItem from="1681379934423" duration="85000" />
+      <workItem from="1681386222401" duration="11000" />
+      <workItem from="1681387699516" duration="50000" />
+      <workItem from="1681389656546" duration="808000" />
+      <workItem from="1681392766491" duration="991000" />
+      <workItem from="1681485355403" duration="9045000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -136,7 +178,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680604405465</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Update">
+      <created>1681206417984</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681206417984</updated>
+    </task>
+    <task id="LOCAL-00009" summary="TUI, Users, M">
+      <created>1681249595886</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681249595886</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,7 +215,9 @@
     <MESSAGE value="LCD.kt and SerialEmitter.kt Update" />
     <MESSAGE value="SerialEmitter.kt fix" />
     <MESSAGE value="Changes by Bernardo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by Bernardo" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="TUI, Users, M" />
+    <option name="LAST_COMMIT_MESSAGE" value="TUI, Users, M" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -11,6 +11,9 @@ object M {
 
     var maintenance = true
     fun run() {
+        LCD.init()
+        TUI.queryOrWrite("OUT OF SERVICE", TUI.ALIGN.Center, TUI.LINES.First)
+        LCD.cursor(1,17)
         Users.init()
         println("Modo de manutenção. Escreva help para lista de comandos")
         while(maintenance) {
@@ -18,10 +21,10 @@ object M {
             if (args.isEmpty()) println("Não foram passados argumentos") else {
                 when (args.first().lowercase()) {
                     "help" -> {
-                        println("adduser        --firstname --lastname --PIN | Adds a user to the system.")
-                        println("removeuser     --UIN                        | Removes a user from the system.")
-                        println("addmsg         --UIN --message              | Adds a message to the specified user on authentication.")
-                        println("close                                       | Updates user list, allowing the system to be shut down.")
+                        println("adduser        --firstname --lastname --PIN | Adiciona um utilizador ao sistema.")
+                        println("removeuser     --UIN                        | Remove um utilizador do sistema .")
+                        println("addmsg         --UIN --message              | Adiciona a mensagem ao utilizador específicado ao autenticar.")
+                        println("close                                       | Atualiza os utilizadores do sistema, permitindo que seja desligado.")
                     }
 
                     "adduser" -> if (args.size != ADDUSERARGS) println("Argumentos inválidos") else {

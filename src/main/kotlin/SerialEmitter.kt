@@ -25,7 +25,6 @@ object SerialEmitter {
         waitTimeNano(DELAY)
         HAL.clrBits(SCLKMASK)
         waitTimeNano(DELAY)
-
     }
 
     fun send(addr: Destination, data: Int) {
@@ -34,9 +33,7 @@ object SerialEmitter {
         HAL.writeBits(SDXMASK, data.shr(4).shl(1))
         clkPulse()
         for (i in 0 .. 3) {
-            waitTimeNano(DELAY)
             val sdx = (1.shl(i) and data).shr(i)
-            println(Integer.toBinaryString((1.shl(i) and data).shr(i).shl(1)))
             HAL.writeBits(SDXMASK, sdx.shl(1))
             clkPulse()
         }
