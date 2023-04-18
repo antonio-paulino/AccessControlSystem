@@ -6,7 +6,7 @@ object TUI {
 
     const val KBDTIMEOUT = 5000.toLong()
 
-    fun queryOrWrite(text: String, align: ALIGN, line: LINES, entry: ENTRY = ENTRY.None) {
+    fun queryOrWrite(text: String, align: ALIGN, line: LINES, entry: ENTRY = ENTRY.None) : Int? {
         val lineval = line.ordinal + 1
         if (entry == ENTRY.None) {
             val coloffset = getColOffset(align, text)
@@ -15,8 +15,9 @@ object TUI {
         else {
             val entrytext = text.extend(entry.len)
             val coloffset = getColOffset(align, entrytext)
-            queryandread(entrytext, lineval, coloffset, entry)
+            return queryandread(entrytext, lineval, coloffset, entry)
         }
+        return null
     }
     private fun write(text: String, colOffset: Int?,  line: Int) {
         if (colOffset != null) LCD.cursor(line, colOffset)

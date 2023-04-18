@@ -17,6 +17,7 @@ object Users {
 
     const val SIZE = 1000
     var userlist = arrayOfNulls<User>(SIZE)
+    val OFFSET = 500
 
     fun init() {
         val fileread = FileAccess.createReader("Users.txt")
@@ -25,7 +26,7 @@ object Users {
             val lineargs = line.split(";")
             val (uin, pin, firstname, lastname, message) = lineargs
             val uin_Int = uin.toInt()
-            userlist[uin_Int] = User(uin_Int, pin.toInt(), firstname, lastname, message)
+            userlist[uin_Int] = User(uin_Int, pin.toInt() - OFFSET , firstname, lastname, message)
             line = fileread.readLine()
         }
         fileread.close()
@@ -57,7 +58,7 @@ object Users {
         for (uin in 0 until SIZE) {
             val user = userlist[uin]
             if(user != null) {
-                outputfile.println("${user.UIN};${user.pin};${user.firstname};${user.lastname};${user.message};")
+                outputfile.println("${user.UIN};${user.pin + OFFSET};${user.firstname};${user.lastname};${user.message};")
             }
         }
         outputfile.close()

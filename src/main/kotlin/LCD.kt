@@ -1,20 +1,15 @@
 fun main() {
+    HAL.init()
     LCD.init()
     KBD.init()
-    for (col in 1..16) {
-        LCD.cursor(1,col)
-        waitTimeMilli(50)
-    }
-    for (col in 1..16) {
-        LCD.cursor(2,col)
-        waitTimeMilli(50)
-    }
-    LCD.clear()
     while (true) {
+        M.init()
         TUI.queryOrWrite(LogFile.getDate(), TUI.ALIGN.Center, TUI.LINES.First)
         TUI.queryOrWrite("UIN:  ", TUI.ALIGN.Center, TUI.LINES.Second)
-        val UIN = TUI.queryOrWrite("Enter UIN:", TUI.ALIGN.Center, TUI.LINES.Second, TUI.ENTRY.UIN)
-        val PIN = TUI.queryOrWrite("Enter PIN:", TUI.ALIGN.Center, TUI.LINES.Second, TUI.ENTRY.PIN)
+        val UIN = TUI.queryOrWrite("Enter UIN:", TUI.ALIGN.Right, TUI.LINES.Second, TUI.ENTRY.UIN)
+        println(UIN)
+        val PIN = TUI.queryOrWrite("Enter PIN:", TUI.ALIGN.Left, TUI.LINES.Second, TUI.ENTRY.PIN)
+        println(PIN)
         LCD.clear()
     }
 }
@@ -63,7 +58,7 @@ object LCD {
        // } else {
        //    writeNibbleParallel(rs, data)
        // }
-        writeNibbleParallel(rs,data)
+        writeNibbleSerial(rs,data)
     }
 
     private fun writeByte(rs: Boolean, data: Int) {
@@ -99,7 +94,17 @@ object LCD {
         writeCMD(0b00000110) // entry mode set: increment cursor, no display shift
 
 
-        writeCMD(0b00001100) // display control: display on, cursor off, blink off
+        writeCMD(0b00001110) // display control: display on, cursor off, blink off
+
+
+        for (col in 1..16) {
+            cursor(1,col)
+            waitTimeMilli(25)
+        }
+        for (col in 1..16) {
+            cursor(2,col)
+            waitTimeMilli(25)
+        }
         clear()
 
     }
