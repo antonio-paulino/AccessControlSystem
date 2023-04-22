@@ -1,5 +1,6 @@
 fun main() {
     HAL.init()
+    SerialEmitter.init()
     LCD.init()
     KBD.init()
     while (true) {
@@ -96,17 +97,7 @@ object LCD {
 
         writeCMD(0b00001110) // display control: display on, cursor off, blink off
 
-
-        for (col in 1..16) {
-            cursor(1,col)
-            waitTimeMilli(25)
-        }
-        for (col in 1..16) {
-            cursor(2,col)
-            waitTimeMilli(25)
-        }
         clear()
-
     }
 
     fun write(c: Char)  = writeDATA(c.code)

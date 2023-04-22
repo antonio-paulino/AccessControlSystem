@@ -4,6 +4,7 @@ import java.util.*
 
 
 object LogFile {
+
     fun add(uin : Int) {
         val logWrite = FileAccess.createWriterAppend("LogFile.txt")
         val time = getDate()
