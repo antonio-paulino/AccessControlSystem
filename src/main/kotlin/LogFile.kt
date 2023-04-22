@@ -18,7 +18,7 @@ object LogFile {
 
     fun getDate() : String {
         val date = Calendar.getInstance().time
-        val dateformat = SimpleDateFormat.getDateTimeInstance()
+        val dateformat = SimpleDateFormat("MMM 14, HH:mm")
         return dateformat.format(date)
     }
 }
