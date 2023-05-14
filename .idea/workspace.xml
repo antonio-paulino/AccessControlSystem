@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="TUI, Users, M">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Software.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Software.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USB_PORT.properties" beforeDir="false" afterPath="$PROJECT_DIR$/USB_PORT.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/FileAccess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/FileAccess.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/M.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/M.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usbPort.jar" beforeDir="false" />
     </list>
     <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +79,8 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Bernardo/Desktop/isel/semestre2/Door_Mechanism_Control&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Coisas uni/Door_Mechanism_Control&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -82,11 +89,19 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager">
+    <configuration name="rest-api | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="AccessControlSystem.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/AccessControlSystem.jar" />
+      <method v="2" />
+    </configuration>
     <configuration name="LCDKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="LCDKt" />
       <module name="Software" />
@@ -96,7 +111,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.rest-api | #1" />
         <item itemvalue="Kotlin.LCDKt" />
+        <item itemvalue="JAR Application.AccessControlSystem.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -130,6 +147,46 @@
       <workItem from="1681392766491" duration="991000" />
       <workItem from="1681485355403" duration="9242000" />
       <workItem from="1681803521422" duration="3914000" />
+      <workItem from="1682251839873" duration="493000" />
+      <workItem from="1682256413402" duration="4325000" />
+      <workItem from="1682261558110" duration="1282000" />
+      <workItem from="1682262955114" duration="197000" />
+      <workItem from="1682263190432" duration="84000" />
+      <workItem from="1682264353866" duration="93000" />
+      <workItem from="1682276210306" duration="14000" />
+      <workItem from="1682278847356" duration="1191000" />
+      <workItem from="1682348466355" duration="18000" />
+      <workItem from="1682351479095" duration="1934000" />
+      <workItem from="1682366822100" duration="2063000" />
+      <workItem from="1682785132792" duration="3618000" />
+      <workItem from="1682799149661" duration="199000" />
+      <workItem from="1682799356667" duration="122000" />
+      <workItem from="1682799488801" duration="147000" />
+      <workItem from="1682799645008" duration="325000" />
+      <workItem from="1682799979622" duration="119000" />
+      <workItem from="1682800102823" duration="604000" />
+      <workItem from="1682852619032" duration="103000" />
+      <workItem from="1682869497380" duration="5000" />
+      <workItem from="1683285312934" duration="23000" />
+      <workItem from="1683318392719" duration="7000" />
+      <workItem from="1683323943478" duration="466000" />
+      <workItem from="1683379341910" duration="6000" />
+      <workItem from="1683637979680" duration="1088000" />
+      <workItem from="1683639109791" duration="1000" />
+      <workItem from="1683639152748" duration="158000" />
+      <workItem from="1683639400257" duration="3141000" />
+      <workItem from="1683648375671" duration="443000" />
+      <workItem from="1683650703551" duration="257000" />
+      <workItem from="1683753724660" duration="138000" />
+      <workItem from="1683753992070" duration="4313000" />
+      <workItem from="1683815390044" duration="9000" />
+      <workItem from="1683815678622" duration="413000" />
+      <workItem from="1684014944199" duration="2058000" />
+      <workItem from="1684063059627" duration="2705000" />
+      <workItem from="1684065785122" duration="1130000" />
+      <workItem from="1684067276037" duration="365000" />
+      <workItem from="1684067661580" duration="71000" />
+      <workItem from="1684067752123" duration="140000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -201,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681494708064</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="TUI, Users, M">
+      <created>1682169982410</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682169982410</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +291,26 @@
     <MESSAGE value="Update" />
     <MESSAGE value="TUI, Users, M" />
     <option name="LAST_COMMIT_MESSAGE" value="TUI, Users, M" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/M.kt</url>
+          <line>17</line>
+          <properties class="M" method="run">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/Users.kt</url>
+          <line>8</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
