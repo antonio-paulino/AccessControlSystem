@@ -1,56 +1,4 @@
-fun main() {
-    HAL.init()
-    SerialEmitter.init()
-    LCD.init()
-    KBD.init()
-    Users.init()
-    while (true) {
-        M.init()
-        TUI.write(LogFile.getDate(), TUI.ALIGN.Center, TUI.LINES.First)
-        val UIN = TUI.query("UIN:", TUI.ALIGN.Center, TUI.LINES.Second, TUI.ENTRY.UIN)
-        val abortErrors = listOf(TUI.ABORTCODE, TUI.TIMEOUTCODE)
-        val user = if (UIN !in abortErrors) Users.userlist[UIN] else null
 
-        if (user != null) {
-            var PIN = -999
-            var attempts = 1
-            while (attempts <= 3 && PIN != user.pin) {
-                PIN = TUI.query("PIN:", TUI.ALIGN.Center, TUI.LINES.Second, TUI.ENTRY.PIN)
-                if (PIN == user.pin) {
-                    LogFile.add(UIN)
-                    LCD.clear()
-                    TUI.write("Hello", TUI.ALIGN.Center, TUI.LINES.First)
-                    TUI.write(user.username, TUI.ALIGN.Center, TUI.LINES.Second)
-                    waitTimeMilli(2000)
-                    DoorMechanism.open(5)
-                    TUI.write("Porta a abrir", TUI.ALIGN.Center, TUI.LINES.First)
-                    while (!DoorMechanism.finished());
-                    waitTimeMilli(5000)
-                    DoorMechanism.close(1)
-                    TUI.write("Porta a fechar", TUI.ALIGN.Center, TUI.LINES.First)
-                    while (!(DoorMechanism.finished()));
-                    break
-                } else {
-                    if (PIN in abortErrors) break
-                    TUI.write("Failed login ($attempts)", TUI.ALIGN.Center, TUI.LINES.Second)
-                    waitTimeMilli(2000)
-                    TUI.clearline(TUI.LINES.Second)
-                    attempts++
-                    if (attempts > 3) {
-                        TUI.write("Too many tries", TUI.ALIGN.Center, TUI.LINES.Second)
-                        waitTimeMilli(5000)
-                    }
-                }
-            }
-
-        } else if (UIN !in abortErrors) {
-            TUI.write("INVALID USER", TUI.ALIGN.Center, TUI.LINES.Second)
-            waitTimeMilli(5000)
-        }
-
-        TUI.clearline(TUI.LINES.Second)
-    }
-}
 
 object LCD {
     private const val LINES = 2
@@ -70,8 +18,6 @@ object LCD {
     private const val INITDELAY = 30
 
     private const val CMDDELAY = 2
-
-    private const val WRITEDELAY = 20
 
     private const val CMDNIBBLE = 0b00000
 
@@ -152,7 +98,6 @@ object LCD {
     fun write(text: String) {
         for (char in text) {
             write(char)
-            waitTimeMilli(WRITEDELAY)
         }
     }
 

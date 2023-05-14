@@ -7,23 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="TUI, Users, M">
+    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="MAIN APP">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Software.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Software.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USB_PORT.properties" beforeDir="false" afterPath="$PROJECT_DIR$/USB_PORT.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Users.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/M.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/M.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usbPort.jar" beforeDir="false" />
     </list>
     <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,13 +83,27 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Coisas uni\Door_Mechanism_Control" />
+      <recent name="E:\Coisas uni\Door_Mechanism_Control\src\main\kotlin" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Kotlin.AccessControlSystemKt">
     <configuration name="rest-api | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="AccessControlSystem.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/AccessControlSystem.jar" />
       <method v="2" />
+    </configuration>
+    <configuration name="AccessControlSystemKt" type="JetRunConfigurationType" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AccessControlSystemKt" />
+      <module name="Software" />
+      <shortenClasspath name="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="LCDKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="LCDKt" />
@@ -111,9 +114,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.AccessControlSystem.jar" />
         <item itemvalue="HTTP Request.rest-api | #1" />
         <item itemvalue="Kotlin.LCDKt" />
-        <item itemvalue="JAR Application.AccessControlSystem.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -187,6 +190,7 @@
       <workItem from="1684067276037" duration="365000" />
       <workItem from="1684067661580" duration="71000" />
       <workItem from="1684067752123" duration="140000" />
+      <workItem from="1684077920459" duration="8690000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -265,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682169982410</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="MAIN APP">
+      <created>1684078042017</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1684078042017</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,20 +301,12 @@
     <MESSAGE value="Changes by Bernardo" />
     <MESSAGE value="Update" />
     <MESSAGE value="TUI, Users, M" />
-    <option name="LAST_COMMIT_MESSAGE" value="TUI, Users, M" />
+    <MESSAGE value="MAIN APP" />
+    <option name="LAST_COMMIT_MESSAGE" value="MAIN APP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-function">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/M.kt</url>
-          <line>17</line>
-          <properties class="M" method="run">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/Users.kt</url>
           <line>8</line>
