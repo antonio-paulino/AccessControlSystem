@@ -1,3 +1,5 @@
+import TUI.ENTRY
+
 fun main() {
     M.run()
 }
@@ -17,9 +19,13 @@ object M {
         TUI.write("OUT OF SERVICE", TUI.ALIGN.Center, TUI.LINES.First)
         println("Maintenance mode. Write help for list of commands")
         while (maintenance) {
+
             val args = readln().trim().getargs()
+
             if (args.isNotEmpty()) {
+
                 when (args.first().lowercase()) {
+
                     "help" -> {
                         println("ADDUSER                                                     | Adds a user to the system.")
                         println("REMOVEUSER                                                  | Removes a user from the system.")
@@ -28,30 +34,9 @@ object M {
                     }
 
                     "adduser" -> {
-                        var username = "                       "
-                        while (username.length > 16) {
+                        val username = getMsgorUsername(ENTRY.USERNAME)
 
-                            print("Username : ")
-                            username = readln().trim()
-
-                            if(username.length > 16)
-                                println("Your username must not exceed the char count supported by the LCD (16).")
-                        }
-
-                        var pin = - 1
-
-                        while (pin < 0) {
-                            try  {
-                                print("PIN: ")
-                                pin = readln().toInt()
-                            }
-                            catch (e: NumberFormatException) {
-                                println("Value must be a number.")
-                            }
-                        }
-
-
-                        if (pin > 99999) println("Your pin must not exceeed 5 digits.")
+                        val pin = getUINorPIN(ENTRY.PIN)
 
                         val uin = Users.addUser(username, pin)
 
@@ -61,17 +46,8 @@ object M {
                     }
 
                     "removeuser" -> {
-                            var uin = - 1
 
-                            while (uin < 0) {
-                                try  {
-                                    print("UIN: ")
-                                    uin = readln().toInt()
-                                }
-                                catch (e: NumberFormatException) {
-                                    println("Value must be a number.")
-                                }
-                            }
+                            val uin = getUINorPIN(ENTRY.UIN)
 
                             val user = Users.userlist[uin]
 
@@ -91,32 +67,14 @@ object M {
 
                     "addmsg" -> {
 
-                            var uin = - 1
-
-                            while (uin < 0) {
-                                try  {
-                                    print("UIN: ")
-                                    uin = readln().toInt()
-                                }
-                                catch (e: NumberFormatException) {
-                                    println("Value must be a number.")
-                                }
-                            }
+                            val uin = getUINorPIN(ENTRY.UIN)
 
                             if (Users.userlist[uin] == null) {
                                 println("User does not exist.")
                                 return
                             }
 
-                            var msg = "                       "
-                            while (msg.length > 16) {
-
-                                print("Message : ")
-                                msg = readln().trim()
-
-                                if(msg.length > 16)
-                                    println("Your username must not exceed the char count supported by the LCD (16).")
-                            }
+                            val msg = getMsgorUsername(ENTRY.MSG)
 
                             Users.setMsg(msg, uin)
 
@@ -153,5 +111,36 @@ object M {
         return args
     }
 
+    private fun getMsgorUsername(entry: ENTRY) : String {
+        var str = "                 "
+        while (str.length > entry.len) {
 
+            print("$entry : ")
+            str = readln().trim()
+
+            if(str.length > entry.len)
+                println("Your $entry must not exceed the char count supported by the LCD (${entry.len}).")
+        }
+
+        return str
+    }
+
+    private fun getUINorPIN(entry: ENTRY) : Int {
+        var num = -1
+        while (num < 0) {
+            try  {
+                print("$entry: ")
+                val numstr = readln()
+
+                if (numstr.length > entry.len)
+                    println("Your $entry must not exceeed ${entry.len} digits.")
+                else
+                    num = numstr.toInt()
+            }
+            catch (e: NumberFormatException) {
+                println("Value must be a number.")
+            }
+        }
+        return num
+    }
 }

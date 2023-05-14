@@ -1,5 +1,6 @@
 import Users.User
-
+import TUI.ALIGN
+import TUI.LINES
 fun main() {
     AccessControlSystem.init()
     AccessControlSystem.run()
@@ -30,18 +31,18 @@ object AccessControlSystem {
         while (true) {
             LCD.clear()
             M.init()
-            TUI.write(LogFile.getDate(), TUI.ALIGN.Center, TUI.LINES.First)
+            TUI.write(LogFile.getDate(), ALIGN.Center, LINES.First)
 
             var isValidUser = false
             var user: User? = null
 
-            val UIN = TUI.query("UIN:", TUI.ALIGN.Center, TUI.LINES.Second, TUI.ENTRY.UIN)
+            val UIN = TUI.query("UIN:", ALIGN.Center, LINES.Second, TUI.ENTRY.UIN)
 
             if (UIN !in ABORTCODES) {
                 user = Users.userlist[UIN]
                 if (user != null) isValidUser = validateUser(user)
                 else {
-                    TUI.write("INVALID USER", TUI.ALIGN.Center, TUI.LINES.Second)
+                    TUI.write("INVALID USER", ALIGN.Center, LINES.Second)
                     waitTimeMilli(CMD_WAIT_TIME)
                 }
             }
@@ -59,23 +60,22 @@ object AccessControlSystem {
             }
 
 
-            TUI.clearline(TUI.LINES.Second)
+            TUI.clearline(LINES.Second)
         }
     }
 
     fun User.hello() {
         LCD.clear()
 
-        TUI.write("Hello", TUI.ALIGN.Center, TUI.LINES.First)
-        TUI.write(this.username, TUI.ALIGN.Center, TUI.LINES.Second)
+        TUI.write("Hello", ALIGN.Center, LINES.First)
+        TUI.write(this.username, ALIGN.Center, LINES.Second)
 
+        waitTimeMilli(CMD_WAIT_TIME)
 
         if (this.message != "null") {
-            LCD.clear()
-            TUI.write(this.username, TUI.ALIGN.Center, TUI.LINES.First)
-            TUI.write(this.message!!, TUI.ALIGN.Center, TUI.LINES.Second)
+            TUI.clearline(LINES.First)
+            TUI.write(this.message!!, ALIGN.Center, LINES.First)
         }
-
     }
 
     fun User.clearMessage() {

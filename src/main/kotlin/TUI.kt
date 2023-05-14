@@ -3,11 +3,12 @@ object TUI {
 
     enum class LINES { First, Second }
     enum class ALIGN { None, Left, Center, Right }
-    enum class ENTRY(val len: Int) { UIN(3), PIN(5) }
+    enum class ENTRY(val len: Int) { UIN(3), PIN(4), MSG(16), USERNAME(16)}
 
     const val KBDTIMEOUT = 5000.toLong()
     const val TIMEOUTCODE = -1
     const val ABORTCODE = -2
+
 
     fun write(text: String, align: ALIGN, line: LINES) {
         val lineval = line.ordinal + 1
