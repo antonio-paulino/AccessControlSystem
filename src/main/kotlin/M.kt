@@ -1,4 +1,7 @@
+import TUI.ABORTCODE
 import TUI.ENTRY
+import TUI.ALIGN
+import java.util.*
 
 fun main() {
     M.run()
@@ -6,7 +9,7 @@ fun main() {
 
 object M {
 
-    const val MAINTENANCEMASK = 128
+    const val MAINTENANCEMASK = 0b10000000
 
     var maintenance = HAL.isBit(MAINTENANCEMASK)
     var on = true
@@ -17,109 +20,124 @@ object M {
 
     fun run() {
         LCD.clear()
-        TUI.write("OUT OF SERVICE", TUI.ALIGN.Center, TUI.LINES.First)
-        TUI.write("MAINTENANCE", TUI.ALIGN.Center, TUI.LINES.Second)
-        println("Maintenance mode. Write help for list of commands")
+        TUI.writeLines("OUT OF SERVICE", ALIGN.Center, "|MAINTENANCE|", ALIGN.Center, true)
+        println("Maintenance mode. Write help for a list of commands")
+
         while (maintenance) {
+            print("Maintenance> ")
+            val command = readln().trim().toLowerCase()
 
-            val args = readln().trim().getargs()
-
-            if (args.isNotEmpty()) {
-
-                when (args.first().lowercase()) {
-
-                    "help" -> {
-                        println("ADDUSER                                                     | Adds a user to the system.")
-                        println("REMOVEUSER                                                  | Removes a user from the system.")
-                        println("ADDMSG                                                      | Adds message to specified user.")
-                        println("CLOSE                                                       | Updates the system, allowing it to be shut down.")
-                    }
-
-                    "adduser" -> {
-                        val username = getMsgorUsername(ENTRY.USERNAME)
-
-                        val pin = getUINorPIN(ENTRY.PIN)
-
-                        val uin = Users.addUser(username, pin)
-
-                        if (uin >= 0) println("User $uin $username added successfully.")
-
-                        else println("The user list is full.")
-                    }
-
-                    "removeuser" -> {
-
-                            val uin = getUINorPIN(ENTRY.UIN)
-
-                            val user = Users.userlist[uin]
-
-                            if (user == null) println("User does not exist.")
-
-                            else {
-                                println("${user.username}. Are you sure you want to remove this user? (Y/N)")
-
-                                if (readln() in "SsYy") {
-                                    Users.removeUser(uin)
-                                    println("User $uin deleted successfully.")
-                                }
-
-                                else println("User was not removed.")
-                            }
-                        }
-
-                    "addmsg" -> {
-
-                            val uin = getUINorPIN(ENTRY.UIN)
-
-                            if (Users.userlist[uin] == null) {
-                                println("User does not exist.")
-                                return
-                            }
-
-                            val msg = getMsgorUsername(ENTRY.MSG)
-
-                            Users.setMsg(msg, uin)
-
-                            println("Message delivered successfully")
-
-                        }
-
-                    "close" -> {
-                        Users.close()
-                        AccessControlSystem.on = false
-                        println("System updated. You can now shut the system down by exiting maintenance mode.")
-                    }
-                    else -> println("Invalid command")
-                 }
+            when (command) {
+                "help" -> printHelp()
+                "adduser" -> addUserCommand()
+                "removeuser" -> removeUserCommand()
+                "addmsg" -> addMessageCommand()
+                "close" -> closeCommand()
+                else -> println("Invalid command")
             }
+
             maintenance = HAL.isBit(MAINTENANCEMASK)
         }
-        println("Exiting maintenance mode...")
 
+        println("Exiting maintenance mode...")
         LCD.clear()
     }
 
-    private fun String.getargs(): List<String> {
-        var word = ""
-        val args = mutableListOf<String>()
-        for (char in this) {
-            if (char == ' ') {
-                if (word != "") args += word
-                word = ""
-            } else {
-                word += char
-            }
-        }
-        if (word != "") args += word
-        return args
+    fun printHelp() {
+        println("ADDUSER                                                     | Adds a user to the system.")
+        println("REMOVEUSER                                                  | Removes a user from the system.")
+        println("ADDMSG                                                      | Adds a message to a specified user.")
+        println("CLOSE                                                       | Updates the system, allowing it to be shut down.")
     }
 
-    private fun getMsgorUsername(entry: ENTRY) : String {
+    private fun addUserCommand() {
+        val username = getMsgOrUsername(ENTRY.USERNAME)
+        if (username == null) {
+            println("Command aborted.")
+            return
+        }
+
+        val pin = getUINOrPIN(ENTRY.PIN)
+        if (pin == null) {
+            println("Command aborted.")
+            return
+        }
+
+        val uin = Users.addUser(username, pin)
+        if (uin >= 0) {
+            println("User $uin $username added successfully.")
+        } else {
+            println("The user list is full.")
+        }
+    }
+
+    private fun removeUserCommand() {
+        val uin = getUINOrPIN(ENTRY.UIN)
+
+        if (uin == null) {
+            println("Command aborted.")
+            return
+        }
+
+        val user = Users.userlist[uin]
+
+        if (user == null) {
+            println("User does not exist.")
+            return
+        }
+
+        print("${user.username}. Are you sure you want to remove this user? (Y/N)")
+
+        val confirmation = readln().trim().lowercase()
+
+        if (confirmation in "sy" && confirmation.isNotEmpty()) {
+
+            Users.removeUser(uin)
+            println("User $uin deleted successfully.")
+
+        }
+        else {
+            println("User was not removed.")
+        }
+    }
+
+    private fun addMessageCommand() {
+        val uin = getUINOrPIN(ENTRY.UIN)
+
+        if (uin == null) {
+            println("Command aborted.")
+            return
+        }
+
+        if (Users.userlist[uin] == null) {
+            println("User does not exist.")
+            return
+        }
+
+        val msg = getMsgOrUsername(ENTRY.MSG)
+        if (msg == null) {
+            println("Command aborted.")
+            return
+        }
+
+        Users.setMsg(msg, uin)
+        println("Message delivered successfully")
+    }
+
+    private fun closeCommand() {
+        Users.close()
+        AccessControlSystem.on = false
+        println("System updated. You can now shut the system down by exiting maintenance mode (Turn M off).")
+    }
+
+    private fun getMsgOrUsername(entry: ENTRY) : String? {
         var str = "                 "
         while (str.length > entry.len) {
 
             print("$entry : ")
             str = readln().trim()
+
+            if (str.isEmpty()) return null
 
             if(str.length > entry.len)
                 println("Your $entry must not exceed the char count supported by the LCD (${entry.len}).")
@@ -128,19 +146,21 @@ object M {
         return str
     }
 
-    private fun getUINorPIN(entry: ENTRY) : Int {
+    private fun getUINOrPIN(entry: ENTRY) : Int? {
         var num = -1
         while (num < 0) {
             try  {
                 print("$entry: ")
                 val numstr = readln()
 
+                if (numstr.isEmpty()) return null
+
                 if (numstr.length > entry.len)
                     println("Your $entry must not exceeed ${entry.len} digits.")
                 else
                     num = numstr.toInt()
             }
-            catch (e: NumberFormatException) {
+            catch (e : NumberFormatException) {
                 println("Value must be a number.")
             }
         }

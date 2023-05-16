@@ -8,7 +8,7 @@ object LogFile {
         val logWrite = FileAccess.createWriterAppend("LogFile.txt")
         val time = getDate(false)
         val user = Users.userlist[uin]!!
-        logWrite.write("$time ->\n")
+        logWrite.write("$time -> $user \n")
         logWrite.close()
     }
 

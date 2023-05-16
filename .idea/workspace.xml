@@ -7,13 +7,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="MAIN APP">
+    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="User Data class, TUI cleanup, Users">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/USERS.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USERS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/USERS.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/M.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/M.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
     </list>
     <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
@@ -25,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -86,6 +91,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Coisas uni\Door_Mechanism_Control" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Coisas uni\Door_Mechanism_Control" />
       <recent name="E:\Coisas uni\Door_Mechanism_Control\src\main\kotlin" />
@@ -194,6 +202,10 @@
       <workItem from="1684067752123" duration="140000" />
       <workItem from="1684077920459" duration="8690000" />
       <workItem from="1684153821454" duration="27000" />
+      <workItem from="1684252523648" duration="8780000" />
+      <workItem from="1684261978488" duration="61000" />
+      <workItem from="1684263147744" duration="80000" />
+      <workItem from="1684264886987" duration="1397000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -306,17 +318,6 @@
     <MESSAGE value="TUI, Users, M" />
     <MESSAGE value="MAIN APP" />
     <option name="LAST_COMMIT_MESSAGE" value="MAIN APP" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/Users.kt</url>
-          <line>8</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

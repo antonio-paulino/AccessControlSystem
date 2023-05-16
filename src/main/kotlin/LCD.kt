@@ -1,15 +1,14 @@
-import SerialEmitter.Destination
-
 object LCD {
-    private const val LINES = 2
 
-    private const val COLS = 16
+    const val LINES = 2
 
-    private const val RSBITMASK = 16 // Out4
+    const val COLS = 16
 
-    private const val ENMASK = 32 // Out5
+    private const val RSBITMASK = 0b00010000
 
-    private const val DATAMASK = 15 //Out0 - Out3
+    private const val ENMASK = 0b00100000
+
+    private const val DATAMASK = 0b00001111
 
     private const val PULSEDELAY = 500
 
@@ -23,7 +22,7 @@ object LCD {
 
     private const val DATANIBBLE = 0b10000
 
-    private fun Pulse() {
+    private fun pulse() {
         waitTimeNano(PULSEDELAY)
         HAL.setBits(ENMASK)
         waitTimeNano(PULSEDELAY)
@@ -40,7 +39,7 @@ object LCD {
             waitTimeNano(RISEDELAY)
         }
         HAL.writeBits(DATAMASK, data)
-        Pulse()
+        pulse()
     }
 
     private fun writeNibbleSerial(rs: Boolean, data: Int) {
@@ -98,7 +97,6 @@ object LCD {
     fun write(text: String) {
         for (char in text) {
             write(char)
-            waitTimeMilli(1)
         }
     }
 

@@ -1,5 +1,8 @@
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
+import TUI.ALIGN
+import TUI.LINES
+
 
 @OptIn(ExperimentalTime::class)
 fun main() {
@@ -16,12 +19,11 @@ fun main() {
     Users.close()
     }
     println(time)
+
 }
 
 
 object Users {
-
-    data class User(val UIN: Int, var pin: Int, var username : String, var message: String?)
 
     const val SIZE = 1000
 

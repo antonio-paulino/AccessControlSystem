@@ -12,11 +12,11 @@ fun main() {
 object KBD {
     const val NONE = 0
 
-    private const val KVALMASK = 16
+    private const val KVALMASK = 0b00010000
 
-    private const val KACKMASK = 64
+    private const val KACKMASK = 0b01000000
 
-    private const val KCODEMASK = 15
+    private const val KCODEMASK = 0b00001111
 
     private var keycode = NONE
 

@@ -1,22 +1,27 @@
 import java.io.Serial
 import SerialEmitter.Destination
 fun main() {
+
     HAL.init()
     SerialEmitter.init()
     LCD.init()
+
     DoorMechanism.open(1)
-    TUI.write("OPENING", TUI.ALIGN.Center, TUI.LINES.First)
+    TUI.writeLine("OPENING", TUI.ALIGN.Center, TUI.LINES.First, true)
+
     while (!DoorMechanism.finished());
+
     LCD.clear()
+
     LCD.write("CLOSING...")
     DoorMechanism.close(1)
+
     while (!DoorMechanism.finished());
 }
 
 
 
 object DoorMechanism { // Controla o estado do mecanismo de abertura da porta.
-
     const val OPENCMD = 0b10000
     const val CLOSECMD = 0b00000
 
