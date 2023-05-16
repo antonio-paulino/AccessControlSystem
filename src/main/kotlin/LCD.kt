@@ -1,4 +1,4 @@
-
+import SerialEmitter.Destination
 
 object LCD {
     private const val LINES = 2
@@ -98,6 +98,7 @@ object LCD {
     fun write(text: String) {
         for (char in text) {
             write(char)
+            waitTimeMilli(1)
         }
     }
 

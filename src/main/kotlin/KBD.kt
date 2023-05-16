@@ -1,7 +1,12 @@
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
-@OptIn(ExperimentalTime::class)
+fun main() {
+    while(true) {
+        val key = KBD.getKey()
+        if(key != KBD.NONE.toChar()) print(key)
+    }
+    }
 
 
 object KBD {

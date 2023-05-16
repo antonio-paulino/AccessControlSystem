@@ -9,14 +9,16 @@ object M {
     const val MAINTENANCEMASK = 128
 
     var maintenance = HAL.isBit(MAINTENANCEMASK)
-
+    var on = true
     fun init() {
         maintenance = HAL.isBit(MAINTENANCEMASK)
         if (maintenance) run()
     }
 
     fun run() {
+        LCD.clear()
         TUI.write("OUT OF SERVICE", TUI.ALIGN.Center, TUI.LINES.First)
+        TUI.write("MAINTENANCE", TUI.ALIGN.Center, TUI.LINES.Second)
         println("Maintenance mode. Write help for list of commands")
         while (maintenance) {
 
@@ -84,7 +86,8 @@ object M {
 
                     "close" -> {
                         Users.close()
-                        println("System updated. You can now exit the maintenance mode.")
+                        AccessControlSystem.on = false
+                        println("System updated. You can now shut the system down by exiting maintenance mode.")
                     }
                     else -> println("Invalid command")
                  }

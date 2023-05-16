@@ -37,7 +37,8 @@ object Users {
             val (uin, pin, username, message) = lineargs
             val uinInt = uin.toInt()
             val pinInt = pin.decode()
-            userlist[uinInt] = User(uinInt, pinInt, username, message)
+            val msgval = if (message == "null") null else message
+            userlist[uinInt] = User(uinInt, pinInt, username, msgval)
             line = fileread.readLine()
         }
         fileread.close()
@@ -79,6 +80,7 @@ object Users {
                 outputfile.println("${user.UIN};${user.pin.encode()};${user.username};${user.message};")
             }
         }
+
         outputfile.close()
     }
 }

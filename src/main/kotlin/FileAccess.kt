@@ -9,4 +9,6 @@ object FileAccess {
     fun createWriter(fileName: String): PrintWriter = PrintWriter(fileName)
 
     fun createWriterAppend (fileName: String) : FileWriter =  FileWriter(fileName, true)
+
+
 }

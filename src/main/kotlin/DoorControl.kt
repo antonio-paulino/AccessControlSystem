@@ -1,4 +1,18 @@
 import java.io.Serial
+import SerialEmitter.Destination
+fun main() {
+    HAL.init()
+    SerialEmitter.init()
+    LCD.init()
+    DoorMechanism.open(1)
+    TUI.write("OPENING", TUI.ALIGN.Center, TUI.LINES.First)
+    while (!DoorMechanism.finished());
+    LCD.clear()
+    LCD.write("CLOSING...")
+    DoorMechanism.close(1)
+    while (!DoorMechanism.finished());
+}
+
 
 
 object DoorMechanism { // Controla o estado do mecanismo de abertura da porta.

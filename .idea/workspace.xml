@@ -8,11 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="MAIN APP">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/USERS.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/M.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/M.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
     </list>
     <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
     <option name="SHOW_DIALOG" value="false" />
@@ -191,6 +193,7 @@
       <workItem from="1684067661580" duration="71000" />
       <workItem from="1684067752123" duration="140000" />
       <workItem from="1684077920459" duration="8690000" />
+      <workItem from="1684153821454" duration="27000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>

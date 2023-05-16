@@ -2,6 +2,7 @@ import isel.leic.UsbPort
 
 object HAL {
     var val_write = 0
+
     fun init() {
         val_write = 0
         UsbPort.write(val_write)

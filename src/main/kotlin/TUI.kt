@@ -23,7 +23,10 @@ object TUI {
         return queryandread(entrytext, lineval, coloffset, entry)
     }
 
-    fun clearline(line: LINES) = write("                ", ALIGN.Left, line)
+    fun clearline(line: LINES) {
+
+        write("                ", ALIGN.Left, line)
+    }
 
     private fun write(text: String, colOffset: Int?, line: Int) {
         if (colOffset != null) LCD.cursor(line, colOffset)
