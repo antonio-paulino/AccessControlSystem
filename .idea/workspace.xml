@@ -7,19 +7,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="APP">
+    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="Documentação 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USERS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/USERS.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/FileAccess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/FileAccess.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/M.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/M.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/User.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/WaitTime.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/WaitTime.kt" afterDir="false" />
     </list>
     <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
     <option name="SHOW_DIALOG" value="false" />
@@ -209,7 +211,8 @@
       <workItem from="1684266536938" duration="29000" />
       <workItem from="1684266578022" duration="41000" />
       <workItem from="1684267223818" duration="74000" />
-      <workItem from="1684325593371" duration="14069000" />
+      <workItem from="1684325593371" duration="14093000" />
+      <workItem from="1684339950820" duration="11672000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -309,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684266606407</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Documentação 1">
+      <created>1684339903728</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1684339903728</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +346,8 @@
     <MESSAGE value="TUI, Users, M" />
     <MESSAGE value="MAIN APP" />
     <MESSAGE value="APP" />
-    <option name="LAST_COMMIT_MESSAGE" value="APP" />
+    <MESSAGE value="Documentação 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentação 1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

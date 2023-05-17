@@ -30,6 +30,7 @@ fun main() {
  * @property key The key for pin encryption and decryption.
  * @property userlist The array of stored users with [SIZE] elements.
  * @see User
+ * @see FileAccess
  * @author Bernardo Pereira
  * @author António Paulino
  */
@@ -49,7 +50,6 @@ object Users {
      */
     fun init(fileName : String) {
         val users = FileAccess.inFromFile(fileName)
-
         for (user in users) {
 
             val userargs = user.split(";") // User params are split in a single line using ';'
@@ -61,7 +61,6 @@ object Users {
 
             userlist[uinInt] = User(uinInt, pinInt, username, msgval)
         }
-
     }
 
 
@@ -89,7 +88,7 @@ object Users {
      */
     fun addUser(username : String, pin: Int) : Int {
         for (uin in userlist.indices) {
-            if (userlist[uin] != null) {
+            if (userlist[uin] == null) {
                 userlist[uin] = User(uin, pin, username, null)
                 return uin
             }
@@ -111,14 +110,13 @@ object Users {
      * @return the UIN of the user if the message was added successfully or -1 if the user does not exist.
      */
     fun setMsg(message: String, uin: Int): Int {
-        if (userlist[uin] == null) {
-            userlist[uin] = userlist[uin]!!.copy(message = message)
-            return uin
-        } else return -1
+        if (userlist[uin] == null) return -1
+        userlist[uin] = userlist[uin]!!.copy(message = message)
+        return uin
     }
 
     /**
-     * Stores the userlist that was altered during program run time in the specified file.
+     * Stores the user list that was altered during program run time in the specified file.
      * One user per line, with each parameter separated by a semicolon.
      * @param fileName the name of the file to store users in.
      */

@@ -12,7 +12,8 @@
  * @property username The username of the user.
  * @property message A message stored for the user to be displayed when authenticated.
  *
- * @see AccessControlSystem
+ *
+ *
  * @see Users
  */
 data class User(val UIN: Int, var pin: Int, var username: String, var message: String?)

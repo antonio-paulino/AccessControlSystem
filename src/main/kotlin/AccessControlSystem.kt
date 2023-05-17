@@ -11,45 +11,83 @@ fun main() {
     exitProcess(-1) // simulação
 }
 
+
+/**
+ * Responsible for controlling access to restrict zones by means of a User Identification Number (UIN)
+ * and a Personal Identification Number (PIN).
+ *
+ * The system allows access to restrict zone after correct input of a UIN and PIN pair. After a valid access,
+ * the system allows the delivery of a text message addressed to the user.
+ *
+ * The AccessControlSystem is composed of a [LCD] for display, a [KBD] for reading user inputs,  a [DoorMechanism] for opening and closing the door,
+ * as well as a [M] for maintenance operations.
+ *
+ * @property CMD_WAIT_TIME the time to wait between successive commands from the Access Control System.
+ * @property DOOR_OPEN_SPEED the speed at which the door is opened after user authorized access.
+ * @property DOOR_CLOSE_SPEED the speed at which the door closes after the door is opened.
+ * @property on Indicates whether the Access Control System is on or off.
+ * @see HAL
+ * @see SerialEmitter
+ * @see LCD
+ * @see TUI
+ * @see KBD
+ * @see LogFile
+ * @see M
+ * @see User
+ * @see Users
+ * @see DoorMechanism
+ * @author Bernardo Pereira
+ * @author António Paulino
+ */
 object AccessControlSystem {
 
-    const val CMD_WAIT_TIME = 2000
+    private const val CMD_WAIT_TIME = 2000
     private const val DOOR_OPEN_SPEED = 0b1000
     private const val DOOR_CLOSE_SPEED = 0b0010
 
 
     var on = false
 
+    /**
+     * Initializes the [AccessControlSystem] by initializing all the required components and loading user data.
+     */
     fun init() {
         HAL.init()
         KBD.init()
         SerialEmitter.init()
         LCD.init()
+        DoorMechanism.init()
         Users.init("USERS.txt")
         on = true
         M.init()
     }
 
 
+    /**
+     * Runs the [AccessControlSystem].
+     *
+     * Validates the user, and processes the Open/Close door commands, as well as the Change PIN and Clear Msg commands.
+     *
+     */
     fun run() {
 
-        while (on) {
+        while (on) { // run if on
 
                 TUI.writeLine(LogFile.getDate(true), ALIGN.Center, LINES.First)
 
-                var isValidUser = false
+                var isValidUser = false // variable to check if a user is authorized
                 var user: User? = null
 
                 val UIN = TUI.query("UIN:", ALIGN.Center, LINES.Second, ENTRY.UIN)
 
-                if (UIN !in CMD_ABORT_CODES) {
+                if (UIN !in CMD_ABORT_CODES) { // If there wasn't a timeout or input abort by the user
 
                     user = Users.userlist[UIN]
 
-                    if (user != null) isValidUser = validateUser(user)
+                    if (user != null) isValidUser = validateUser(user) // Validate the user
 
                     else {
-                        TUI.writeLine("INVALID USER", ALIGN.Center, LINES.Second)
+                        TUI.writeLine("INVALID USER", ALIGN.Center, LINES.Second) // User doesn't exist
                         waitTimeMilli(CMD_WAIT_TIME)
                     }
 
@@ -59,24 +97,25 @@ object AccessControlSystem {
 
                     LogFile.add(user!!.UIN)
 
-                    ACSHello(user)
+                    ACSHello(user) // Greets the user
 
                     val key = KBD.waitKey(KBDTIMEOUT / 2)
 
-                    if (key == '#') ACSChangePin(user)
+                    if (key == '#') ACSChangePin(user) // Change PIN after authorized access
 
-                    else if (key == '*' && user.message != null) ACSClearMessage(user)
+                    else if (key == '*' && user.message != null) ACSClearMessage(user) // Clear MSG if it exists
 
                     openDoor(user)
 
                 }
 
-            M.init()
+            M.init() // checks the M key to enter maintenance mode
+                     // if after exiting maintenance mode on is set to false via the close command, then the loop will stop running.
 
         }
 
 
-        TUI.writeLines("Shutting Down", ALIGN.Center,"...",  ALIGN.Center)
+        TUI.writeLines("Shutting Down", ALIGN.Center,"...",  ALIGN.Center) //Shuts down the system if on is false
 
         waitTimeMilli(CMD_WAIT_TIME)
 
@@ -84,10 +123,18 @@ object AccessControlSystem {
 
     }
 
-
+    /**
+     * Validates the user's PIN for authentication.
+     *
+     * The user is given 3 attempts.
+     *
+     * @param user The user to validate.
+     * @return true if the user is validated, false if all the 3 attempts fail or the command is aborted.
+     *
+     */
     private fun validateUser(user: User): Boolean {
 
-        var PIN = -999
+        var PIN = -999 // Initialize the pin value
         var attempts = 1
 
         while (attempts <= 3 && PIN != user.pin) {
@@ -98,7 +145,7 @@ object AccessControlSystem {
 
             else {
 
-                if (PIN in CMD_ABORT_CODES) return false
+                if (PIN in CMD_ABORT_CODES) return false //Return false if aborted
 
                 TUI.writeLine("Failed login ($attempts)", ALIGN.Center, LINES.Second)
 
@@ -115,10 +162,19 @@ object AccessControlSystem {
 
         }
 
-        return false
+        return false //Return false if all attempts failed
 
     }
 
+    /**
+     * Changes the pin for the specified user after authorized access via the [AccessControlSystem]
+     *
+     * The [AccessControlSystem] queries the user two times, one for the new PIN and another for the confirmation of the new PIN.
+     *
+     * If both PIN inputs are the same, and the command was not aborted, the PIN is changed.
+     *
+     * @param user the user to change the pin for
+     */
     fun ACSChangePin(user : User) {
 
         TUI.writeLines("Change PIN?", ALIGN.Center, "* to confirm ", ALIGN.Center)
@@ -159,8 +215,10 @@ object AccessControlSystem {
 
 
     /**
-     * Clears the set user message after getting confirmation via the [AccessControlSystem].
-     * Keeps the message if there is no confirmation.
+     * Clears the set user after authorized access via the [AccessControlSystem].
+     *
+     * The [AccessControlSystem] queries the user for confirmation to delete the message. If the user confirms
+     * the deletion of the message, the message is deleted.
      *
      */
     fun ACSClearMessage(user: User) {
@@ -186,6 +244,7 @@ object AccessControlSystem {
 
     /**
      * Displays a greeting message for the user after authentication via the [AccessControlSystem].
+     *
      * Displays the set user message if there is one after waiting [CMD_WAIT_TIME].
      */
     fun ACSHello(user : User) {
@@ -199,6 +258,21 @@ object AccessControlSystem {
         }
 
     }
+
+
+
+
+    /**
+     * Opens the door for the authorized user after authentication via the [AccessControlSystem].
+     *
+     * The [AccessControlSystem] starts by informing the user that the door is being opened, and opens the door.
+     * After the door is opened, the [AccessControlSystem] waits [CMD_WAIT_TIME] * 2 for the user to enter.
+     *
+     * After waiting, the [AccessControlSystem] informs the user that the door is being closed and closes the door.
+     *
+     * @param user The user the door is being opened for
+     *
+     */
 
     private fun openDoor(user: User) {
 

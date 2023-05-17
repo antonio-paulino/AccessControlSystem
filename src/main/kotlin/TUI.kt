@@ -11,6 +11,7 @@ import LCD.COLS
  *
  * @author Bernardo Pereira
  * @author António Paulino
+ * @see LCD
  */
 object TUI {
 
@@ -101,7 +102,7 @@ object TUI {
      * @param line The line where the input is on
      * @param col The starting col position of the input
      * @param entry The type of entry (UIN/PIN) to determine length.
-     * @return The user input as integer
+     * @return The user input as integer, [TIMEOUTCODE] if the timeout is reached, or [ABORTCODE] if the command is aborted.
      */
     private fun read(line: LINES, startcol: Int, entry: ENTRY): Int {
 
@@ -187,7 +188,7 @@ object TUI {
      * @param align the alignment of the text prompt
      * @param line the line to display the prompt on
      * @param line the type of input entry
-     * @return The user input as integer
+     * @return The user input as integer, [TIMEOUTCODE] if the timeout is reached, or [ABORTCODE] if the command is aborted.
      */
     fun query(text: String, align: ALIGN, line: LINES, entry: ENTRY): Int {
 
