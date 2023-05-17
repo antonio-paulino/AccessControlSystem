@@ -1,7 +1,5 @@
-import TUI.ABORTCODE
 import TUI.ENTRY
 import TUI.ALIGN
-import java.util.*
 
 fun main() {
     M.run()
@@ -25,7 +23,7 @@ object M {
 
         while (maintenance) {
             print("Maintenance> ")
-            val command = readln().trim().toLowerCase()
+            val command = readln().trim().lowercase()
 
             when (command) {
                 "help" -> printHelp()
@@ -51,13 +49,13 @@ object M {
     }
 
     private fun addUserCommand() {
-        val username = getMsgOrUsername(ENTRY.USERNAME)
+        val username = getStrEntry(ENTRY.USERNAME)
         if (username == null) {
             println("Command aborted.")
             return
         }
 
-        val pin = getUINOrPIN(ENTRY.PIN)
+        val pin = getIntEntry(ENTRY.PIN)
         if (pin == null) {
             println("Command aborted.")
             return
@@ -72,7 +70,7 @@ object M {
     }
 
     private fun removeUserCommand() {
-        val uin = getUINOrPIN(ENTRY.UIN)
+        val uin = getIntEntry(ENTRY.UIN)
 
         if (uin == null) {
             println("Command aborted.")
@@ -102,7 +100,7 @@ object M {
     }
 
     private fun addMessageCommand() {
-        val uin = getUINOrPIN(ENTRY.UIN)
+        val uin = getIntEntry(ENTRY.UIN)
 
         if (uin == null) {
             println("Command aborted.")
@@ -114,7 +112,7 @@ object M {
             return
         }
 
-        val msg = getMsgOrUsername(ENTRY.MSG)
+        val msg = getStrEntry(ENTRY.MSG)
         if (msg == null) {
             println("Command aborted.")
             return
@@ -125,12 +123,12 @@ object M {
     }
 
     private fun closeCommand() {
-        Users.close()
+        Users.close("USERS.TXT")
         AccessControlSystem.on = false
         println("System updated. You can now shut the system down by exiting maintenance mode (Turn M off).")
     }
 
-    private fun getMsgOrUsername(entry: ENTRY) : String? {
+    private fun getStrEntry(entry: ENTRY) : String? {
         var str = "                 "
         while (str.length > entry.len) {
 
@@ -146,7 +144,7 @@ object M {
         return str
     }
 
-    private fun getUINOrPIN(entry: ENTRY) : Int? {
+    private fun getIntEntry(entry: ENTRY) : Int? {
         var num = -1
         while (num < 0) {
             try  {

@@ -13,7 +13,7 @@ fun main() {
 
 object AccessControlSystem {
 
-    private const val CMD_WAIT_TIME = 2000
+    const val CMD_WAIT_TIME = 2000
     private const val DOOR_OPEN_SPEED = 0b1000
     private const val DOOR_CLOSE_SPEED = 0b0010
 
@@ -25,7 +25,7 @@ object AccessControlSystem {
         KBD.init()
         SerialEmitter.init()
         LCD.init()
-        Users.init()
+        Users.init("USERS.txt")
         on = true
         M.init()
     }
@@ -59,13 +59,13 @@ object AccessControlSystem {
 
                     LogFile.add(user!!.UIN)
 
-                    user.hello()
+                    ACSHello(user)
 
                     val key = KBD.waitKey(KBDTIMEOUT / 2)
 
-                    if (key == '#') user.changePin()
+                    if (key == '#') ACSChangePin(user)
 
-                    else if (key == '*') user.clearMessage()
+                    else if (key == '*' && user.message != null) ACSClearMessage(user)
 
                     openDoor(user)
 
@@ -119,10 +119,92 @@ object AccessControlSystem {
 
     }
 
+    fun ACSChangePin(user : User) {
+
+        TUI.writeLines("Change PIN?", ALIGN.Center, "* to confirm ", ALIGN.Center)
+
+        if (KBD.waitKey(KBDTIMEOUT) == '*') {
+
+            TUI.writeLine("New PIN?", ALIGN.Center, LINES.First)
+
+            val newPin = TUI.query("PIN:", ALIGN.Center, LINES.Second, ENTRY.PIN)
+
+            TUI.writeLine("Confirm PIN:", ALIGN.Center, LINES.First)
+
+            val confirmPin = TUI.query("PIN:", ALIGN.Center, LINES.Second, ENTRY.PIN)
+
+            if (newPin == confirmPin && newPin !in CMD_ABORT_CODES) {
+                user.pin = newPin
+
+                TUI.writeLines("PIN", ALIGN.Center, "Changed", ALIGN.Center)
+            }
+
+            else {
+
+                TUI.writeLines("PIN", ALIGN.Center, "Kept", ALIGN.Center)
+
+            }
+
+        }
+
+        else {
+
+            TUI.writeLines("PIN", ALIGN.Center, "Kept", ALIGN.Center)
+
+        }
+
+        waitTimeMilli(CMD_WAIT_TIME)
+
+    }
+
+
+    /**
+     * Clears the set user message after getting confirmation via the [AccessControlSystem].
+     * Keeps the message if there is no confirmation.
+     *
+     */
+    fun ACSClearMessage(user: User) {
+
+        TUI.writeLines("Clear Message?", ALIGN.Center, "* To confirm ", ALIGN.Center)
+
+        if (KBD.waitKey(KBDTIMEOUT) == '*') {
+
+            user.message = null
+
+            TUI.writeLines("Message", ALIGN.Center, "Cleared", ALIGN.Center)
+
+            waitTimeMilli(CMD_WAIT_TIME)
+
+        } else {
+
+            TUI.writeLines("Message", ALIGN.Center, "Kept", ALIGN.Center)
+
+            waitTimeMilli(CMD_WAIT_TIME)
+        }
+
+    }
+
+    /**
+     * Displays a greeting message for the user after authentication via the [AccessControlSystem].
+     * Displays the set user message if there is one after waiting [CMD_WAIT_TIME].
+     */
+    fun ACSHello(user : User) {
+
+        TUI.writeLines("Hello", ALIGN.Center, user.username, ALIGN.Center)
+
+        waitTimeMilli(CMD_WAIT_TIME)
+
+        if (user.message != null) {
+            TUI.writeLines(user.username, ALIGN.Center, user.message!!, ALIGN.Center)
+        }
+
+    }
+
     private fun openDoor(user: User) {
 
         TUI.writeLines(user.username, ALIGN.Center, "Opening Door", ALIGN.Center)
         waitTimeMilli(CMD_WAIT_TIME / 2)
+
         DoorMechanism.open(DOOR_OPEN_SPEED)
 
         while(!DoorMechanism.finished());

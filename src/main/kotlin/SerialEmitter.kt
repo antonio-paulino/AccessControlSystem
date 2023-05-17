@@ -7,17 +7,29 @@ fun main() {
     SerialEmitter.send(SerialEmitter.Destination.LCD, 0x15)
 }
 
+
+/**
+ * Serial emitter for sending data to the door controller or the LCD
+ * @property DELAY The wait time between sending bit signals to the hardware.
+ * @property SDXMASK the bit mask of SDX output to the USB Port
+ * @property SCLKMASK the bit mask of SCLK output to the USB Port
+ * @property BUSYMASK the bit mask of BUSY input on the USB Port
+ * @property isbusy variable to store whether the Serial Receiver is busy or not
+ */
 object SerialEmitter {
 
     enum class Destination(val mask: Int) { LCD(0b00000001), DOOR(0b00000100) }
 
     private const val DELAY = 200
-    private const val SDXMASK = 2
+    private const val SDXMASK = 0b00000010
     private const val SCLKMASK = 0b10000000
     private const val BUSYMASK = 0b00100000
     private var isbusy = false
 
 
+    /**
+     * Initializes the Door Mechanism Control and LCD Serial Receivers by deselecting them. Sets [isbusy] to false.
+     */
     fun init() {
         isbusy = false
 

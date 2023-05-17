@@ -5,11 +5,9 @@ import java.util.*
 object LogFile {
 
     fun add(uin: Int) {
-        val logWrite = FileAccess.createWriterAppend("LogFile.txt")
         val time = getDate(false)
         val user = Users.userlist[uin]!!
-        logWrite.write("$time -> $user \n")
-        logWrite.close()
+        FileAccess.appendFile("$time -> $user \n", "LOG.txt")
     }
 
     fun getDate(display : Boolean): String {
