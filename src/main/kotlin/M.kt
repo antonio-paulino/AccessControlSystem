@@ -10,7 +10,7 @@ fun main() {
  * Maintenance mode for the [AccessControlSystem].
  * Handles maintenance operations and commands.
  * @property MAINTENANCEMASK the bit mask of the M input on the USB Port
- * @property maintenace flag indicating whether the system is in maintenance mode
+ * @property maintenance flag indicating whether the system is in maintenance mode
  * @property on flag indicating whether the [AccessControlSystem] is on
  *
  * @author Bernardo Pereira
@@ -50,16 +50,17 @@ object M {
             print("Maintenance> ")
             val command = readln().trim().lowercase()
 
-            when (command) {
-                "help" -> printHelp()
-                "adduser" -> addUserCommand()
-                "removeuser" -> removeUserCommand()
-                "addmsg" -> addMessageCommand()
-                "close" -> closeCommand()
-                else -> println("Invalid command")
+            if (command.isNotEmpty()) {
+                when (command) {
+                    "help" -> printHelp()
+                    "adduser" -> addUserCommand()
+                    "removeuser" -> removeUserCommand()
+                    "addmsg" -> addMessageCommand()
+                    "close" -> closeCommand()
+                    else -> println("Invalid command")
+                }
             }
-
-            maintenance = HAL.isBit(MAINTENANCEMASK)
+                maintenance = HAL.isBit(MAINTENANCEMASK)
         }
 
         println("Exiting maintenance mode...")
@@ -202,7 +203,7 @@ object M {
 
 
     /**
-     * Retrieves a string entry from the user.
+     * Retrieves a string entry from the system manager.
      *
      * The entry must not exceed the 16 characters, since that is the maximum length supported by the LCD.
      *
@@ -229,9 +230,9 @@ object M {
 
 
     /**
-     * Retrieves an integer entry from the user.
+     * Retrieves an integer entry from the system manager.
      *
-     * The entry must not exceed the amount of digits for the requested entry type, 3 for the UIN and 4 for PIN.
+     * The entry must be equal to the amount of digits for the requested entry type, 3 for the UIN and 4 for PIN.
      *
      * @param entry The type of entry (UIN, PIN).
      * @return The system manager provided integer entry, or null if the entry was aborted.
@@ -247,8 +248,8 @@ object M {
 
                 if (numstr.isEmpty()) return null
 
-                if (numstr.length > entry.len)
-                    println("Your $entry must not exceeed ${entry.len} digits.")
+                if (numstr.length != entry.len)
+                    println("Your $entry must have ${entry.len} digits.")
                 else
                     num = numstr.toInt()
             }

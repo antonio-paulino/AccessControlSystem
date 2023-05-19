@@ -18,7 +18,7 @@ object LogFile {
     fun add(uin: Int) {
         val time = getDate(false)
         val user = Users.userlist[uin]!!
-        FileAccess.appendFile("$time -> $user \n", "LOG.txt")
+        FileAccess.appendFile("$time -> ${user.UIN}, ${user.username} \n", "LOG.txt")
     }
 
 

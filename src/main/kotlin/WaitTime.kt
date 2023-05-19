@@ -1,4 +1,4 @@
-
+import isel.leic.utils.Time
 
 /**
  * Waits a set number of nanoseconds
@@ -15,6 +15,5 @@ fun waitTimeNano(time: Int) {
  * @param time the number of milliseconds to wait
  */
 fun waitTimeMilli(time: Int) {
-    val endtime = System.currentTimeMillis() + time
-    while (System.currentTimeMillis() <= endtime);
+    Time.sleep(time.toLong())
 }

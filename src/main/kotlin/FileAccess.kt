@@ -57,7 +57,9 @@ object FileAccess {
      */
     fun inFromFile(fileName: String) : List<String> {
         val inFile = createReader(fileName)
-        return inFile.readLines()
+        val lines = inFile.readLines()
+        inFile.close()
+        return lines
     }
 
     /**
@@ -69,6 +71,7 @@ object FileAccess {
     fun appendFile(line : String, fileName : String) {
         val outFile = createWriterAppend(fileName)
         outFile.write(line)
+        outFile.close()
     }
 
 }

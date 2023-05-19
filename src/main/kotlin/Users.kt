@@ -106,7 +106,7 @@ object Users {
 
     /**
      * Adds a message to the specified user.
-     * @param uin The UIN of the user to remove.
+     * @param uin The UIN of the user to message.
      * @return the UIN of the user if the message was added successfully or -1 if the user does not exist.
      */
     fun setMsg(message: String, uin: Int): Int {

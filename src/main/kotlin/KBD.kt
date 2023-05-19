@@ -1,3 +1,4 @@
+import isel.leic.utils.Time
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
@@ -19,6 +20,8 @@ fun main() {
  * @property keycode The current key code.
  * @property keyval A flag indicating if a key is pressed.
  * @property kbdmatrix A list of characters representing the keyboard matrix.
+ * @property CHECK_DELAY Time to wait between key press checks. Since the system will spend most of its time waiting
+ * for user authentication (key presses), this allows the system to use less resources.
  *
  * @author Bernardo Pereira
  * @author António Paulino
@@ -36,6 +39,8 @@ object KBD {
     private var keycode = NONE
 
     private var keyval = false
+
+    private const val CHECK_DELAY = 50
 
     private val kbdmatrix = listOf('1', '4', '7', '*', '2', '5', '8', '0', '3', '6', '9', '#')
 
@@ -90,6 +95,7 @@ object KBD {
 
         while (System.currentTimeMillis() < finaltime && key == NONE.toChar()) {
             key = getKey()
+            if(key == NONE.toChar()) waitTimeMilli(CHECK_DELAY) //wait if there was no key pressed
         }
 
         return key

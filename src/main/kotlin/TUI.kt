@@ -46,7 +46,7 @@ object TUI {
 
 
     /**
-     * Calculates the LCD column position based on text length and alignment type.
+     * Calculates the LCD start column position based on text length and alignment type.
      * @param alignment the alignment type
      * @param text the text to write on the LCD
      *
@@ -91,7 +91,7 @@ object TUI {
      */
     private fun write(text: String, col: Int, line: LINES) {
 
-        if (col > 0) LCD.cursor(line.ordinal + 1, col) //If align is none (col = 0), then don't reposition the cursor
+        if (col > 0) LCD.cursor(line.ordinal + 1, col) //reposition the cursor if the type of alignment is not none
         LCD.write(text)
 
     }
@@ -107,11 +107,11 @@ object TUI {
     private fun read(line: LINES, startcol: Int, entry: ENTRY): Int {
 
         val linepos = line.ordinal + 1
-        var word = "" //stores the user input
+        var userInput = "" //stores the user input
 
         LCD.cursor(linepos, startcol)   //position the cursor at the start of the input
 
-        while (word.length < entry.len) {   //get the user input
+        while (userInput.length < entry.len) {   //get the user input
 
             val key = KBD.waitKey(KBDTIMEOUT)
 
@@ -119,16 +119,16 @@ object TUI {
 
             else if (key == '*') {
 
-                if (word.isEmpty()) return ABORTCODE    //abort if the input field is empty
+                if (userInput.isEmpty()) return ABORTCODE    //abort if the input field is empty
 
                 clearEntryDigits(linepos, startcol, entry.len) //if the input field is not empty clear the input field
-                word = ""
+                userInput = ""
 
             }
 
             else if (key != '#') {
 
-                word += key
+                userInput += key
 
                 if (entry == ENTRY.PIN) LCD.write('*') //show the user input on the input field of the LCD. If the entry is PIN don't show it.
                 else LCD.write(key)
@@ -137,7 +137,7 @@ object TUI {
 
         }
 
-        return word.toInt()
+        return userInput.toInt()
     }
 
     /**
@@ -156,7 +156,7 @@ object TUI {
      * @param str the string to be written
      * @param align the alignment type
      * @param line the line to write on
-     * @param clear whether to clear the LCD before writing. Default is yes but can be user set.
+     * @param clear whether to clear the line before writing. Default is yes but can be user set.
      *
      */
     fun writeLine(str : String, align: ALIGN, line: LINES, clear: Boolean = true) {
@@ -172,6 +172,7 @@ object TUI {
      * @param align1 the alignment type for the first line
      * @param align2 the alignment type for the second line
      * @param clear whether to clear both lines before writing. Default is yes but can be user set.
+     * If one line should be cleared and the other should not, use [writeLine] instead.
      */
     fun writeLines(str1: String, align1: ALIGN, str2: String, align2: ALIGN, clear: Boolean = true) {
 

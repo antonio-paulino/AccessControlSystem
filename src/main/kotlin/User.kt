@@ -7,7 +7,7 @@
  * @author António Paulino
  *
  *
- * @property UIN The User Identification Number of the user.
+ * @property UIN The User Identification Number.
  * @property PIN The Personal Identification Number of the user.
  * @property username The username of the user.
  * @property message A message stored for the user to be displayed when authenticated.

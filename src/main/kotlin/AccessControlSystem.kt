@@ -111,7 +111,6 @@ object AccessControlSystem {
 
             M.init() // checks the M key to enter maintenance mode
                      // if after exiting maintenance mode on is set to false via the close command, then the loop will stop running.
-
         }
 
 
@@ -281,7 +280,7 @@ object AccessControlSystem {
 
         DoorMechanism.open(DOOR_OPEN_SPEED)
 
-        while(!DoorMechanism.finished());
+        while(!DoorMechanism.finished()){ waitTimeMilli(CMD_WAIT_TIME / 10) }
 
         TUI.writeLine("Door Open", ALIGN.Center, LINES.Second)
         waitTimeMilli(CMD_WAIT_TIME * 2)
@@ -289,7 +288,7 @@ object AccessControlSystem {
         TUI.writeLine("Door Closing", ALIGN.Center, LINES.Second)
         DoorMechanism.close(DOOR_CLOSE_SPEED)
 
-        while(!DoorMechanism.finished());
+        while(!DoorMechanism.finished()) { waitTimeMilli(CMD_WAIT_TIME / 10) }
 
         TUI.writeLine("Door Closed", ALIGN.Center, LINES.Second)
         waitTimeMilli(CMD_WAIT_TIME)
