@@ -1,27 +1,17 @@
-import isel.leic.utils.Time
-import kotlin.time.ExperimentalTime
-import kotlin.time.measureTime
-
 fun main() {
-    while(true) {
+    while (true) {
         val key = KBD.getKey()
-        if(key != KBD.NONE.toChar()) print(key)
+        if (key != KBD.NONE.toChar()) print(key)
     }
-    }
+}
 
 /**
+ * 22/5/2023
+ *
  * Manages the keyboard input for the [AccessControlSystem].
  *
- * @property NONE A constant representing no key pressed.
- * @property KVALMASK The bit mask for the key value on the USB input port.
- * @property KACKMASK The bit mask for acknowledging the key input on the USB output port.
- * @property KCODEMASK The bit mask for the key code on the USB input port.
- *
- * @property keycode The current key code.
- * @property keyval A flag indicating if a key is pressed.
- * @property kbdmatrix A list of characters representing the keyboard matrix.
- * @property CHECK_DELAY Time to wait between key press checks. Since the system will spend most of its time waiting
- * for user authentication (key presses), this allows the system to use less resources.
+ * @property NONE A constant representing no key pressed. Returned if there was no key pressed
+ * in the [getKey] and [waitKey] functions.
  *
  * @author Bernardo Pereira
  * @author António Paulino
@@ -30,18 +20,34 @@ fun main() {
 object KBD {
     const val NONE = 0
 
+    /**
+     * The bit mask for the key valid flag on the Usb input Port
+     */
     private const val KVALMASK = 0b00010000
 
+    /**
+     * The bit mask for acknowledging the key input on the USB output port.
+     */
     private const val KACKMASK = 0b01000000
 
+    /**
+     * The bit mask for the key code on the USB input port.
+     */
     private const val KCODEMASK = 0b00001111
 
+    /**
+     * Stores the current key value.
+     */
     private var keycode = NONE
 
+    /**
+     * Represents if there is a valid key to be read.
+     */
     private var keyval = false
 
-    private const val CHECK_DELAY = 50
-
+    /**
+     * List of characters representing the keyboard matrix.
+     */
     private val kbdmatrix = listOf('1', '4', '7', '*', '2', '5', '8', '0', '3', '6', '9', '#')
 
     /**
@@ -84,6 +90,10 @@ object KBD {
     /**
      * Waits for a key input until the timeout is reached.
      *
+     * This function sleeps for 50 ms after every key press check if there is no key pressed.
+     * Since the system will spend most of its time waiting for key presses by the user,
+     * this allows the system to use less resources.
+     *
      * @param timeout The timeout period in milliseconds.
      * @return The character corresponding to the pressed key, or [NONE] if no key is pressed within the timeout.
      */
@@ -95,7 +105,8 @@ object KBD {
 
         while (System.currentTimeMillis() < finaltime && key == NONE.toChar()) {
             key = getKey()
-            if(key == NONE.toChar()) waitTimeMilli(CHECK_DELAY) //wait if there was no key pressed
+            if (key == NONE.toChar()) waitTimeMilli(CHECK_INTERVAL) //wait if there was no key pressed
+
         }
 
         return key

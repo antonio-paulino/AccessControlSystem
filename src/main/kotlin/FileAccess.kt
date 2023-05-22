@@ -5,7 +5,10 @@ import java.io.PrintWriter
 
 
 /**
+ * 22/5/2023
+ *
  * Provides functionality for reading and writing to a file.
+ *
  * @author Bernardo Pereira
  * @author António Paulino
  */
@@ -32,7 +35,7 @@ object FileAccess {
      * @return A FileWriter associated with the file.
      */
 
-    private fun createWriterAppend (fileName: String) : FileWriter =  FileWriter(fileName, true)
+    private fun createWriterAppend(fileName: String): FileWriter = FileWriter(fileName, true)
 
 
     /**
@@ -40,10 +43,10 @@ object FileAccess {
      * @param lines The lines to write
      * @param fileName The name of the file to write to
      */
-    fun outToFile(lines : List<String>, fileName: String) {
+    fun outToFile(lines: List<String>, fileName: String) {
         val outFile = createWriter(fileName)
 
-        for(line in lines) {
+        for (line in lines) {
             outFile.println(line)
         }
 
@@ -55,7 +58,7 @@ object FileAccess {
      * @param fileName The name of the file to read from
      * @return A list of strings with all the lines from the file.
      */
-    fun inFromFile(fileName: String) : List<String> {
+    fun inFromFile(fileName: String): List<String> {
         val inFile = createReader(fileName)
         val lines = inFile.readLines()
         inFile.close()
@@ -68,7 +71,7 @@ object FileAccess {
      * @param line The line to append
      *
      */
-    fun appendFile(line : String, fileName : String) {
+    fun appendFile(line: String, fileName: String) {
         val outFile = createWriterAppend(fileName)
         outFile.write(line)
         outFile.close()

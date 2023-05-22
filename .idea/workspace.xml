@@ -12,20 +12,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="DOCUMENTATION">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Software_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/AccessControlSystem.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AccessControlSystem.iml" afterDir="false" />
+    <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="DOCUMENTATION + Mudança em waitTimeMilli">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/AccessControlSystem__2_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AccessControlSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AccessControlSystem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Software.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Software.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DoorControl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/FileAccess.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/FileAccess.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/HAL.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/KBD.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/M.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/M.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/User.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
@@ -87,7 +89,7 @@
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Coisas uni/Door_Mechanism_Control/USERS.txt&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Coisas uni/Door_Mechanism_Control&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -246,6 +248,21 @@
       <workItem from="1684497180178" duration="234000" />
       <workItem from="1684497791364" duration="313000" />
       <workItem from="1684498124637" duration="1014000" />
+      <workItem from="1684499185944" duration="125000" />
+      <workItem from="1684500703553" duration="242000" />
+      <workItem from="1684502295124" duration="384000" />
+      <workItem from="1684505883631" duration="58000" />
+      <workItem from="1684505973347" duration="1507000" />
+      <workItem from="1684507537613" duration="332000" />
+      <workItem from="1684521411407" duration="52000" />
+      <workItem from="1684529628780" duration="58000" />
+      <workItem from="1684535834218" duration="267000" />
+      <workItem from="1684536635580" duration="13000" />
+      <workItem from="1684536658273" duration="100000" />
+      <workItem from="1684536785548" duration="626000" />
+      <workItem from="1684579695159" duration="2000" />
+      <workItem from="1684686809284" duration="506000" />
+      <workItem from="1684769881002" duration="1933000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -359,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684352569596</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="DOCUMENTATION + Mudança em waitTimeMilli">
+      <created>1684499291762</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1684499291762</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,7 +412,8 @@
     <MESSAGE value="APP" />
     <MESSAGE value="Documentação 1" />
     <MESSAGE value="DOCUMENTATION" />
-    <option name="LAST_COMMIT_MESSAGE" value="DOCUMENTATION" />
+    <MESSAGE value="DOCUMENTATION + Mudança em waitTimeMilli" />
+    <option name="LAST_COMMIT_MESSAGE" value="DOCUMENTATION + Mudança em waitTimeMilli" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

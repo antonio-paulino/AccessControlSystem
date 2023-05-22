@@ -7,12 +7,10 @@ fun main() {
 
 
 /**
+ * 22/5/2023
+ *
  * Maintenance mode for the [AccessControlSystem].
  * Handles maintenance operations and commands.
- * @property MAINTENANCEMASK the bit mask of the M input on the USB Port
- * @property maintenance flag indicating whether the system is in maintenance mode
- * @property on flag indicating whether the [AccessControlSystem] is on
- *
  * @author Bernardo Pereira
  * @author António Paulino
  *
@@ -22,11 +20,15 @@ fun main() {
  * @see TUI
  */
 object M {
+    /**
+     * Bit mask for the M flag on the USB input port.
+     */
+    private const val MAINTENANCEMASK = 0b10000000
 
-    const val MAINTENANCEMASK = 0b10000000
-
-    var maintenance = HAL.isBit(MAINTENANCEMASK)
-    var on = true
+    /**
+     * Stores the current M flag value, if true, the maintenance mode runs, if false, it stops.
+     */
+    private var maintenance = HAL.isBit(MAINTENANCEMASK)
 
     /**
      * initializes the maintenance mode if the system is in maintenance mode, indicated by the M input.
@@ -60,7 +62,7 @@ object M {
                     else -> println("Invalid command")
                 }
             }
-                maintenance = HAL.isBit(MAINTENANCEMASK)
+            maintenance = HAL.isBit(MAINTENANCEMASK)
         }
 
         println("Exiting maintenance mode...")
@@ -143,8 +145,7 @@ object M {
             Users.removeUser(uin)
             println("User $uin deleted successfully.")
 
-        }
-        else {
+        } else {
             println("User was not removed.")
         }
     }
@@ -196,8 +197,7 @@ object M {
             Users.close("USERS.txt")
             AccessControlSystem.on = false
             println("System updated. You can now shut the system down by exiting maintenance mode (Turn M off).")
-        }
-        else
+        } else
             println("The system was not shut down.")
     }
 
@@ -212,7 +212,7 @@ object M {
      *
      *
      */
-    private fun getStrEntry(entry: ENTRY) : String? {
+    private fun getStrEntry(entry: ENTRY): String? {
         var str = "                 "
         while (str.length > entry.len) {
 
@@ -221,8 +221,8 @@ object M {
 
             if (str.isEmpty()) return null
 
-            if(str.length > entry.len)
-                println("Your $entry must not exceed the char count supported by the LCD (${entry.len}).")
+            if (str.length > entry.len)
+                println("The $entry must not exceed the char count supported by the LCD (${entry.len}).")
         }
 
         return str
@@ -239,21 +239,20 @@ object M {
      *
      *
      */
-    private fun getIntEntry(entry: ENTRY) : Int? {
+    private fun getIntEntry(entry: ENTRY): Int? {
         var num = -1
         while (num < 0) {
-            try  {
+            try {
                 print("$entry: ")
                 val numstr = readln()
 
                 if (numstr.isEmpty()) return null
 
                 if (numstr.length != entry.len)
-                    println("Your $entry must have ${entry.len} digits.")
+                    println("The $entry must have ${entry.len} digits.")
                 else
                     num = numstr.toInt()
-            }
-            catch (e : NumberFormatException) {
+            } catch (e: NumberFormatException) {
                 println("Value must be a number.")
             }
         }

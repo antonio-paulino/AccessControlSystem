@@ -9,12 +9,10 @@ fun main() {
 
 
 /**
- * Serial emitter for sending data to the door controller or the LCD
- * @property DELAY The wait time between sending bit signals to the hardware.
- * @property SDXMASK the bit mask of SDX output to the USB Port
- * @property SCLKMASK the bit mask of SCLK output to the USB Port
- * @property BUSYMASK the bit mask of BUSY input on the USB Port
- * @property isbusy variable to store whether the Serial Receiver is busy or not
+ * 22/5/2023
+ *
+ * Serial emitter for sending data to the door controller or the LCD of the [AccessControlSystem]
+ * @property Destination Serial emitter destinations.
  * @author Bernardo Pereira
  * @author António Paulino
  * @see LCD
@@ -23,16 +21,33 @@ fun main() {
  */
 object SerialEmitter {
 
-
-    /**
-     * Serial emitter destinations, [mask] is the bit mask for the selector of the serial receivers.
-     */
     enum class Destination(val mask: Int) { LCD(0b00000001), DOOR(0b00000100) }
 
+    /**
+     * The wait time in nanoseconds between sending bit signals to the hardware
+     */
     private const val DELAY = 200
+
+    /**
+     * The bit mask of the SDX output to the USB Port
+     */
     private const val SDXMASK = 0b00000010
+
+    /**
+     * The bit mask of the SCLK output to the USB Port
+     *
+     */
     private const val SCLKMASK = 0b10000000
+
+    /**
+     * The bit mask of the BUSY input on the USB Port. Represents if the serial receiver is busy.
+     *
+     */
     private const val BUSYMASK = 0b00100000
+
+    /**
+     * Flag that represents if the Serial Receiver is busy.
+     */
     private var isbusy = false
 
 

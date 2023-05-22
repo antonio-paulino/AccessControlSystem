@@ -1,6 +1,8 @@
 import LCD.COLS
 
 /**
+ * 22/5/2023
+ *
  * Text User Interface (TUI) for displaying and interacting with text on an LCD screen.
  * Provides functionality for writing and querying text on the LCD with line selection and alignment type.
  *
@@ -34,7 +36,7 @@ object TUI {
      *
      * @see User
      */
-    enum class ENTRY(val len: Int) { UIN(3), PIN(4), MSG(16), USERNAME(16)}
+    enum class ENTRY(val len: Int) { UIN(3), PIN(4), MSG(16), USERNAME(16) }
 
     const val KBDTIMEOUT = 5000.toLong()
 
@@ -124,9 +126,7 @@ object TUI {
                 clearEntryDigits(linepos, startcol, entry.len) //if the input field is not empty clear the input field
                 userInput = ""
 
-            }
-
-            else if (key != '#') {
+            } else if (key != '#') {
 
                 userInput += key
 
@@ -159,7 +159,7 @@ object TUI {
      * @param clear whether to clear the line before writing. Default is yes but can be user set.
      *
      */
-    fun writeLine(str : String, align: ALIGN, line: LINES, clear: Boolean = true) {
+    fun writeLine(str: String, align: ALIGN, line: LINES, clear: Boolean = true) {
         if (clear) clearline(line)
         val coloffset = getColOffset(align, str)
         write(str, coloffset, line)
@@ -194,7 +194,9 @@ object TUI {
     fun query(text: String, align: ALIGN, line: LINES, entry: ENTRY): Int {
 
         var entrytext = text
-        for (i in 0 until entry.len) { entrytext += '_' }   //creates the input field of the given entry
+        for (i in 0 until entry.len) {
+            entrytext += '_'
+        }   //creates the input field of the given entry
 
         val coloffset = getColOffset(align, entrytext)
         clearline(line)

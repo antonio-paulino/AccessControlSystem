@@ -1,6 +1,6 @@
-
-
 /**
+ * 22/5/2023
+ *
  * Represents a user in the system.
  *
  * @author Bernardo Pereira

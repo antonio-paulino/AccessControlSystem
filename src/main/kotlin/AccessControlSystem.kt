@@ -1,8 +1,12 @@
-import TUI.LINES
-import TUI.CMD_ABORT_CODES
-import TUI.KBDTIMEOUT
+import AccessControlSystem.CMD_WAIT_TIME
+import AccessControlSystem.DOOR_CLOSE_SPEED
+import AccessControlSystem.DOOR_OPEN_SPEED
+import AccessControlSystem.on
 import TUI.ALIGN
+import TUI.CMD_ABORT_CODES
 import TUI.ENTRY
+import TUI.KBDTIMEOUT
+import TUI.LINES
 import kotlin.system.exitProcess
 
 fun main() {
@@ -13,6 +17,10 @@ fun main() {
 
 
 /**
+ *
+ * 22/5/2023
+ *
+ *
  * Responsible for controlling access to restrict zones by means of a User Identification Number (UIN)
  * and a Personal Identification Number (PIN).
  *
@@ -21,11 +29,7 @@ fun main() {
  *
  * The AccessControlSystem is composed of a [LCD] for display, a [KBD] for reading user inputs,  a [DoorMechanism] for opening and closing the door,
  * as well as a [M] for maintenance operations.
- *
- * @property CMD_WAIT_TIME the time to wait between successive commands from the Access Control System.
- * @property DOOR_OPEN_SPEED the speed at which the door is opened after user authorized access.
- * @property DOOR_CLOSE_SPEED the speed at which the door closes after the door is opened.
- * @property on Indicates whether the Access Control System is on or off.
+ * @property on Indicates whether the Access Control System is on or off. To turn off the system set to false.
  * @see HAL
  * @see SerialEmitter
  * @see LCD
@@ -38,11 +42,24 @@ fun main() {
  * @see DoorMechanism
  * @author Bernardo Pereira
  * @author António Paulino
+ *
+
  */
 object AccessControlSystem {
 
+    /**
+     * The time to wait between successive commands from the Access Control System.
+     */
     private const val CMD_WAIT_TIME = 2000
+
+    /**
+     * The speed at which the door is opened after user authorized access.
+     */
     private const val DOOR_OPEN_SPEED = 0b1000
+
+    /**
+     * The speed at which the door is closed after user authorized access.
+     */
     private const val DOOR_CLOSE_SPEED = 0b0010
 
 
@@ -73,48 +90,48 @@ object AccessControlSystem {
 
         while (on) { // run if on
 
-                TUI.writeLine(LogFile.getDate(true), ALIGN.Center, LINES.First)
+            TUI.writeLine(LogFile.getDate(true), ALIGN.Center, LINES.First)
 
-                var isValidUser = false // variable to check if a user is authorized
-                var user: User? = null
+            var isValidUser = false // variable to check if a user is authorized
+            var user: User? = null
 
-                val UIN = TUI.query("UIN:", ALIGN.Center, LINES.Second, ENTRY.UIN)
+            val UIN = TUI.query("UIN:", ALIGN.Center, LINES.Second, ENTRY.UIN)
 
-                if (UIN !in CMD_ABORT_CODES) { // If there wasn't a timeout or input abort by the user
+            if (UIN !in CMD_ABORT_CODES) { // If there wasn't a timeout or input abort by the user
 
-                    user = Users.userlist[UIN]
+                user = Users.userlist[UIN]
 
-                    if (user != null) isValidUser = validateUser(user) // Validate the user
+                if (user != null) isValidUser = validateUser(user) // Validate the user
 
-                    else {
-                        TUI.writeLine("INVALID USER", ALIGN.Center, LINES.Second) // User doesn't exist
-                        waitTimeMilli(CMD_WAIT_TIME)
-                    }
-
+                else {
+                    TUI.writeLine("INVALID USER", ALIGN.Center, LINES.Second) // User doesn't exist
+                    waitTimeMilli(CMD_WAIT_TIME)
                 }
 
-                if (isValidUser) {
+            }
 
-                    LogFile.add(user!!.UIN)
+            if (isValidUser) {
 
-                    ACSHello(user) // Greets the user
+                LogFile.add(user!!.UIN)
 
-                    val key = KBD.waitKey(KBDTIMEOUT / 2)
+                ACSHello(user) // Greets the user
 
-                    if (key == '#') ACSChangePin(user) // Change PIN after authorized access
+                val key = KBD.waitKey(KBDTIMEOUT / 2)
 
-                    else if (key == '*' && user.message != null) ACSClearMessage(user) // Clear MSG if it exists
+                if (key == '#') ACSChangePin(user) // Change PIN after authorized access
 
-                    openDoor(user)
+                else if (key == '*' && user.message != null) ACSClearMessage(user) // Clear MSG if it exists
 
-                }
+                openDoor(user)
+
+            }
 
             M.init() // checks the M key to enter maintenance mode
-                     // if after exiting maintenance mode on is set to false via the close command, then the loop will stop running.
+            // if after exiting maintenance mode on is set to false via the close command, then the loop will stop running.
         }
 
 
-        TUI.writeLines("Shutting Down", ALIGN.Center,"...",  ALIGN.Center) //Shuts down the system if on is false
+        TUI.writeLines("Shutting Down", ALIGN.Center, "...", ALIGN.Center) //Shuts down the system if on is false
 
         waitTimeMilli(CMD_WAIT_TIME)
 
@@ -141,16 +158,15 @@ object AccessControlSystem {
             PIN = TUI.query("PIN:", ALIGN.Center, LINES.Second, ENTRY.PIN)
 
             if (PIN == user.pin) return true
-
             else {
 
                 if (PIN in CMD_ABORT_CODES) return false //Return false if aborted
 
                 TUI.writeLine("Failed login ($attempts)", ALIGN.Center, LINES.Second)
 
-                waitTimeMilli(CMD_WAIT_TIME)
-
                 attempts++
+
+                waitTimeMilli(CMD_WAIT_TIME)
 
                 if (attempts > 3) {
                     TUI.writeLine("Too many tries", ALIGN.Center, LINES.Second)
@@ -174,7 +190,7 @@ object AccessControlSystem {
      *
      * @param user the user to change the pin for
      */
-    fun ACSChangePin(user : User) {
+    fun ACSChangePin(user: User) {
 
         TUI.writeLines("Change PIN?", ALIGN.Center, "* to confirm ", ALIGN.Center)
 
@@ -192,17 +208,13 @@ object AccessControlSystem {
                 user.pin = newPin
 
                 TUI.writeLines("PIN", ALIGN.Center, "Changed", ALIGN.Center)
-            }
-
-            else {
+            } else {
 
                 TUI.writeLines("PIN", ALIGN.Center, "Kept", ALIGN.Center)
 
             }
 
-        }
-
-        else {
+        } else {
 
             TUI.writeLines("PIN", ALIGN.Center, "Kept", ALIGN.Center)
 
@@ -214,7 +226,7 @@ object AccessControlSystem {
 
 
     /**
-     * Clears the set user after authorized access via the [AccessControlSystem].
+     * Clears the set user message after authorized access via the [AccessControlSystem].
      *
      * The [AccessControlSystem] queries the user for confirmation to delete the message. If the user confirms
      * the deletion of the message, the message is deleted.
@@ -246,7 +258,7 @@ object AccessControlSystem {
      *
      * Displays the set user message if there is one after waiting [CMD_WAIT_TIME].
      */
-    fun ACSHello(user : User) {
+    fun ACSHello(user: User) {
 
         TUI.writeLines("Hello", ALIGN.Center, user.username, ALIGN.Center)
 
@@ -257,8 +269,6 @@ object AccessControlSystem {
         }
 
     }
-
-
 
 
     /**
@@ -280,7 +290,9 @@ object AccessControlSystem {
 
         DoorMechanism.open(DOOR_OPEN_SPEED)
 
-        while(!DoorMechanism.finished()){ waitTimeMilli(CMD_WAIT_TIME / 10) }
+        while (!DoorMechanism.finished()) {
+            waitTimeMilli(CHECK_INTERVAL)
+        }
 
         TUI.writeLine("Door Open", ALIGN.Center, LINES.Second)
         waitTimeMilli(CMD_WAIT_TIME * 2)
@@ -288,7 +300,9 @@ object AccessControlSystem {
         TUI.writeLine("Door Closing", ALIGN.Center, LINES.Second)
         DoorMechanism.close(DOOR_CLOSE_SPEED)
 
-        while(!DoorMechanism.finished()) { waitTimeMilli(CMD_WAIT_TIME / 10) }
+        while (!DoorMechanism.finished()) {
+            waitTimeMilli(CHECK_INTERVAL)
+        }
 
         TUI.writeLine("Door Closed", ALIGN.Center, LINES.Second)
         waitTimeMilli(CMD_WAIT_TIME)

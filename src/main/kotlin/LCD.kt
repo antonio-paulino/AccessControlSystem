@@ -1,17 +1,10 @@
 /**
+ * 22/5/2023
+ *
+ *
  * Manages the LCD for the [AccessControlSystem], using 4-bit interface.
  * @property LINES the number of lines on the LCD
  * @property COLS the number of columns on the LCD
- * @property RS_BIT_MASK the bit mask of the RS output on the USB output port
- * @property EN_MASK the bit mask of the EN output on the USB output port
- * @property DATA_MASK the bit mask of the DATA input on the USB output port
- * @property PULSE_DELAY the delay in nanoseconds between Enable pulses to the LCD
- * @property RISE_DELAY the delay in nanoseconds for the rise time of the bit signals
- * @property INIT_DELAY the delay between LCD initialization commands.
- * @property CMD_DELAY the delay in milliseconds between LCD commands.
- * @property CMD_NIBBLE A nibble with the RS bit set to 0, to send a command to the LCD
- * @property DATA_NIBBLE a nibble with the RS bit set to 1, to send data to the LCD
- *
  * @author Bernardo Pereira
  * @author António Paulino
  * @see SerialEmitter
@@ -24,22 +17,51 @@ object LCD {
 
     const val COLS = 16
 
+    /**
+     * The bit mask of the RS output on the USB output port
+     */
     private const val RS_BIT_MASK = 0b00010000
 
+    /**
+     * The bit mask of the EN output on the USB output port
+     */
     private const val EN_MASK = 0b00100000
 
+    /**
+     * The bit mask of the Data input on the USB input port
+     */
     private const val DATA_MASK = 0b00001111
 
+    /**
+     * The delay in nanoseconds between EN pulses to the LCD
+     */
     private const val PULSE_DELAY = 500
 
+
+    /**
+     * The delay in nanoseconds for the rise time of the bit signals.
+     */
     private const val RISE_DELAY = 100
 
+
+    /**
+     * The delay between LCD initialization commands
+     */
     private const val INIT_DELAY = 30
 
+    /**
+     * The delay in milliseconds between LCD commands.
+     */
     private const val CMD_DELAY = 2
 
+    /**
+     * A nibble with the RS bit set to 0, to send a command to the LCD
+     */
     private const val CMD_NIBBLE = 0b00000
 
+    /**
+     * A nibble with the RS bit set to 1, to send data to the LCD
+     */
     private const val DATA_NIBBLE = 0b10000
 
 

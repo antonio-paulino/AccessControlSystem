@@ -1,6 +1,8 @@
 import isel.leic.UsbPort
 
 /**
+ * 22/5/2023
+ *
  * Hardware Abstraction Layer (HAL) for the [AccessControlSystem].
  *
  * Provides an interface to interact with the USB Port for reading and writing bits.

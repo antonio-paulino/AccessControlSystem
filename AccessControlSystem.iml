@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Modules" />
     <orderEntry type="library" name="usbPort_LinuxMacOS" level="project" />
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="library" name="AccessControlSystem (2)" level="project" />
   </component>
 </module>

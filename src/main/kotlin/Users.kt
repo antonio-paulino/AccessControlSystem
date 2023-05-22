@@ -3,31 +3,11 @@ import kotlin.time.measureTime
 import TUI.ALIGN
 import TUI.LINES
 
-
-@OptIn(ExperimentalTime::class)
-fun main() {
-    val arr = Array<String>(100) {""}
-    val time = measureTime {
-        Users.init("USERS.txt")
-    for (i in 0 until Users.SIZE) {
-        val uin = Users.addUser("${i * i}", (i + 1) * 1324)
-        Users.removeUser(i)
-    }
-    Users.addUser("12313", 23234)
-    Users.addUser("23145", 23231)
-
-    Users.close("USERS.txt")
-    }
-    val ind = Users.userlist.indexOf(Users.userlist[0])
-    val hash = HashMap<String, String>()
-
-
-}
-
 /**
+ * 22/5/2023
+ *
  * Collection of user data, provides functionality for managing users.
  * @property SIZE The max number of users that can be stored.
- * @property key The key for pin encryption and decryption.
  * @property userlist The array of stored users with [SIZE] elements.
  * @see User
  * @see FileAccess
@@ -40,6 +20,9 @@ object Users {
 
     var userlist = arrayOfNulls<User>(SIZE)
 
+    /**
+     * The key for pin encryption and decryption.
+     */
     private const val key = 19259
 
 
@@ -48,7 +31,7 @@ object Users {
      * Reads from the file where users are stored.
      * @param fileName the file where users are stored
      */
-    fun init(fileName : String) {
+    fun init(fileName: String) {
         val users = FileAccess.inFromFile(fileName)
         for (user in users) {
 
@@ -73,7 +56,7 @@ object Users {
     /**
      * Decodes the stored user PIN to use during program run time.
      */
-    private fun String.decode() = (this.toInt() / key ) xor(key)
+    private fun String.decode() = (this.toInt() / key) xor (key)
 
 
     /**
@@ -86,7 +69,7 @@ object Users {
      *
      * @return the new user's UIN or -1 if the user list is currently full.
      */
-    fun addUser(username : String, pin: Int) : Int {
+    fun addUser(username: String, pin: Int): Int {
         for (uin in userlist.indices) {
             if (userlist[uin] == null) {
                 userlist[uin] = User(uin, pin, username, null)
@@ -120,7 +103,7 @@ object Users {
      * One user per line, with each parameter separated by a semicolon.
      * @param fileName the name of the file to store users in.
      */
-    fun close(filename : String) {
+    fun close(filename: String) {
         val usersToStore = userlist.filterNotNull().map { "${it.UIN};${it.pin.encode()};${it.username};${it.message}" }
         FileAccess.outToFile(usersToStore, filename)
     }
