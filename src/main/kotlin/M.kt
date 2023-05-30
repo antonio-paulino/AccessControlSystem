@@ -59,6 +59,7 @@ object M {
                     "removeuser" -> removeUserCommand()
                     "addmsg" -> addMessageCommand()
                     "close" -> closeCommand()
+                    "listusers" -> printUsersCommand()
                     else -> println("Invalid command")
                 }
             }
@@ -70,6 +71,13 @@ object M {
     }
 
 
+    private fun printUsersCommand() {
+        for(i in 0 until Users.SIZE) {
+            val user = Users.getUser(i)
+            if (user != null) println("${user.UIN} -> ${user.username}")
+        }
+    }
+
     /**
      * Prints the help information for available maintenance commands.
      */
@@ -78,6 +86,7 @@ object M {
         println("REMOVEUSER                                                  | Removes a user from the system.")
         println("ADDMSG                                                      | Adds a message to a specified user.")
         println("CLOSE                                                       | Updates the system, allowing it to be shut down.")
+        println("LISTUSERS                                                   | Prints the system users.")
     }
 
     /**
@@ -129,7 +138,7 @@ object M {
             return
         }
 
-        val user = Users.userlist[uin]
+        val user = Users.getUser(uin)
 
         if (user == null) {
             println("User does not exist.")
@@ -166,19 +175,19 @@ object M {
             return
         }
 
-        if (Users.userlist[uin] == null) {
-            println("User does not exist.")
-            return
-        }
-
         val msg = getStrEntry(ENTRY.MSG)
+
         if (msg == null) {
             println("Command aborted.")
             return
         }
 
-        Users.setMsg(msg, uin)
-        println("Message delivered successfully")
+        val res = Users.setMsg(msg, uin)
+
+        if (res >= 0)
+            println("Message delivered successfully")
+        else
+            println("User does not exist.")
     }
 
     /**
@@ -191,8 +200,10 @@ object M {
      *
      */
     private fun closeCommand() {
-        print("Shut down the AccessControlSystem? (Y/N): ")
+        print("Shut down the Access Control System? (Y/N): ")
+
         val confirmation = readln().trim().lowercase()
+
         if (confirmation in "sy" && confirmation.isNotEmpty()) {
             Users.close("USERS.txt")
             AccessControlSystem.on = false
@@ -249,9 +260,10 @@ object M {
                 if (numstr.isEmpty()) return null
 
                 if (numstr.length != entry.len)
-                    println("The $entry must have ${entry.len} digits.")
+                    println("The $entry must not exceed ${entry.len} digits.")
                 else
                     num = numstr.toInt()
+                    if (num < 0) println("Value must be positive")
             } catch (e: NumberFormatException) {
                 println("Value must be a number.")
             }

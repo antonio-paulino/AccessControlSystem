@@ -25,7 +25,9 @@ fun waitTimeNano(time: Int) {
 
 
 /**
- * Waits a set number of milliseconds
+ * Waits a set number of milliseconds.
+ *
+ * Used for sleep times and less precise wait times.
  * @param time the number of milliseconds to wait
  */
 fun waitTimeMilli(time: Int) {

@@ -7,23 +7,28 @@ import TUI.LINES
  * 22/5/2023
  *
  * Collection of user data, provides functionality for managing users.
- * @property SIZE The max number of users that can be stored.
- * @property userlist The array of stored users with [SIZE] elements.
+ *
+ * @property SIZE the max amount of users
  * @see User
  * @see FileAccess
  * @author Bernardo Pereira
  * @author António Paulino
  */
 object Users {
+    /**
+     * The amount of users that can be stored
+     */
+     const val SIZE = 1000
 
-    const val SIZE = 1000
-
-    var userlist = arrayOfNulls<User>(SIZE)
+    /**
+     * The array where users are stored during program run time
+     */
+    private var userlist = arrayOfNulls<User>(SIZE)
 
     /**
      * The key for pin encryption and decryption.
      */
-    private const val key = 19259
+    private const val key = 0b0100101100111011
 
 
     /**
@@ -99,10 +104,29 @@ object Users {
     }
 
     /**
+     * Gets a user from the user list.
+     * @param uin The UIN of the user
+     * @return The user or null if the user does not exist
+     */
+    fun getUser(uin : Int): User? = userlist[uin]
+
+
+    /**
+     * Checks if the given pin is the correct pin for the given user
+     * @param user The user being validated
+     * @param pin The pin to compare with the user pin
+     * @return true if the given pin is the user pin, false otherwise
+     */
+    fun isValidLogin(user : User, pin : Int) : Boolean = user.pin == pin
+
+
+
+    /**
      * Stores the user list that was altered during program run time in the specified file.
      * One user per line, with each parameter separated by a semicolon.
      * @param fileName the name of the file to store users in.
      */
+
     fun close(filename: String) {
         val usersToStore = userlist.filterNotNull().map { "${it.UIN};${it.pin.encode()};${it.username};${it.message}" }
         FileAccess.outToFile(usersToStore, filename)

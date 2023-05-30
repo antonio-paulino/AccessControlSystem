@@ -19,17 +19,17 @@ object LogFile {
      */
     fun add(uin: Int) {
         val time = getDate(false)
-        val user = Users.userlist[uin]!!
+        val user = Users.getUser(uin)!!
         FileAccess.appendFile("$time -> ${user.UIN}, ${user.username} \n", "LOG.txt")
     }
 
-
     /**
-     * Gets the date of the log entry or the date to display on the LCD when the [AccessControlSystem] is on.
+     * Gets the current system date.
      *
      * @param display Whether to return the date to display on the LCD (true) or the date to write to the log file (false).
      * @return The formatted date to display on the LCD or write to the log file.
      */
+
     fun getDate(display: Boolean): String {
         val date = Calendar.getInstance().time
         val dateformat = if (display) SimpleDateFormat("MMM dd HH:mm")

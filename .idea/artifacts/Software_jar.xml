@@ -3,17 +3,13 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Software_jar</output-path>
     <root id="archive" name="Software.jar">
       <element id="module-output" name="Software" />
-      <element id="library" level="project" name="usbPort" />
       <element id="extracted-dir" path="$PROJECT_DIR$/AccessControlSystem.jar" path-in-jar="/" />
+      <element id="library" level="project" name="usbPort" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.0/kotlin-stdlib-jdk8-1.8.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/1.8.0/kotlin-stdlib-1.8.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-common/1.8.0/kotlin-stdlib-common-1.8.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/13.0/annotations-13.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.0/kotlin-stdlib-jdk7-1.8.0.jar" path-in-jar="/" />
-      <element id="file-copy" path="$PROJECT_DIR$/USB_PORT.properties" />
-      <element id="file-copy" path="$PROJECT_DIR$/Simul.properties" />
-      <element id="file-copy" path="$PROJECT_DIR$/LOG.txt" />
-      <element id="file-copy" path="$PROJECT_DIR$/USERS.txt" />
     </root>
   </artifact>
 </component>

@@ -1,6 +1,4 @@
 import AccessControlSystem.CMD_WAIT_TIME
-import AccessControlSystem.DOOR_CLOSE_SPEED
-import AccessControlSystem.DOOR_OPEN_SPEED
 import AccessControlSystem.on
 import TUI.ALIGN
 import TUI.CMD_ABORT_CODES
@@ -12,7 +10,6 @@ import kotlin.system.exitProcess
 fun main() {
     AccessControlSystem.init()
     AccessControlSystem.run()
-    exitProcess(-1) // simulação
 }
 
 
@@ -83,7 +80,7 @@ object AccessControlSystem {
     /**
      * Runs the [AccessControlSystem].
      *
-     * Validates the user, and processes the Open/Close door commands, as well as the Change PIN and Clear Msg commands.
+     * Validates the user and processes the Open/Close door commands, as well as the Change PIN and Clear Msg commands.
      *
      */
     fun run() {
@@ -92,44 +89,41 @@ object AccessControlSystem {
 
             TUI.writeLine(LogFile.getDate(true), ALIGN.Center, LINES.First)
 
-            var isValidUser = false // variable to check if a user is authorized
-            var user: User? = null
+            val uin = TUI.query("UIN:", ALIGN.Center, LINES.Second, ENTRY.UIN)
 
-            val UIN = TUI.query("UIN:", ALIGN.Center, LINES.Second, ENTRY.UIN)
+            if (uin !in CMD_ABORT_CODES) { // If there wasn't a timeout or input abort by the user
 
-            if (UIN !in CMD_ABORT_CODES) { // If there wasn't a timeout or input abort by the user
+                val user = Users.getUser(uin)
 
-                user = Users.userlist[UIN]
+                if (user != null) { // If the user exists
 
-                if (user != null) isValidUser = validateUser(user) // Validate the user
+                    val isValidUser = acsValidateUser(user)
 
-                else {
+                    if (isValidUser) {
+
+                        LogFile.add(uin)
+
+                        acsHello(user) // Greets the user
+
+                        val key = KBD.waitKey(KBDTIMEOUT / 2)
+
+                        if (key == '#') acsChangePin(user) // Change PIN after authorized access
+
+                        if (key == '*' && user.message != null) acsClearMessage(user) // Clear MSG if it exists
+
+                        openDoor(user)
+
+                    }
+
+                } else {
                     TUI.writeLine("INVALID USER", ALIGN.Center, LINES.Second) // User doesn't exist
                     waitTimeMilli(CMD_WAIT_TIME)
                 }
-
             }
-
-            if (isValidUser) {
-
-                LogFile.add(user!!.UIN)
-
-                ACSHello(user) // Greets the user
-
-                val key = KBD.waitKey(KBDTIMEOUT / 2)
-
-                if (key == '#') ACSChangePin(user) // Change PIN after authorized access
-
-                else if (key == '*' && user.message != null) ACSClearMessage(user) // Clear MSG if it exists
-
-                openDoor(user)
-
-            }
-
             M.init() // checks the M key to enter maintenance mode
             // if after exiting maintenance mode on is set to false via the close command, then the loop will stop running.
-        }
 
+        }
 
         TUI.writeLines("Shutting Down", ALIGN.Center, "...", ALIGN.Center) //Shuts down the system if on is false
 
@@ -148,21 +142,21 @@ object AccessControlSystem {
      * @return true if the user is validated, false if all the 3 attempts fail or the command is aborted.
      *
      */
-    private fun validateUser(user: User): Boolean {
+    private fun acsValidateUser(user: User): Boolean {
 
-        var PIN = -999 // Initialize the pin value
         var attempts = 1
 
-        while (attempts <= 3 && PIN != user.pin) {
+        while (attempts <= 3) {
 
-            PIN = TUI.query("PIN:", ALIGN.Center, LINES.Second, ENTRY.PIN)
+            val pin = TUI.query("PIN:", ALIGN.Center, LINES.Second, ENTRY.PIN)
 
-            if (PIN == user.pin) return true
+            if (Users.isValidLogin(user, pin)) return true
+
             else {
 
-                if (PIN in CMD_ABORT_CODES) return false //Return false if aborted
+                if (pin in CMD_ABORT_CODES) return false //Return false if aborted
 
-                TUI.writeLine("Failed login ($attempts)", ALIGN.Center, LINES.Second)
+                TUI.writeLine("INVALID PIN ($attempts)", ALIGN.Center, LINES.Second)
 
                 attempts++
 
@@ -190,7 +184,7 @@ object AccessControlSystem {
      *
      * @param user the user to change the pin for
      */
-    fun ACSChangePin(user: User) {
+    private fun acsChangePin(user: User) {
 
         TUI.writeLines("Change PIN?", ALIGN.Center, "* to confirm ", ALIGN.Center)
 
@@ -232,7 +226,7 @@ object AccessControlSystem {
      * the deletion of the message, the message is deleted.
      *
      */
-    fun ACSClearMessage(user: User) {
+    private fun acsClearMessage(user: User) {
 
         TUI.writeLines("Clear Message?", ALIGN.Center, "* To confirm ", ALIGN.Center)
 
@@ -258,7 +252,7 @@ object AccessControlSystem {
      *
      * Displays the set user message if there is one after waiting [CMD_WAIT_TIME].
      */
-    fun ACSHello(user: User) {
+    private fun acsHello(user: User) {
 
         TUI.writeLines("Hello", ALIGN.Center, user.username, ALIGN.Center)
 
@@ -266,6 +260,7 @@ object AccessControlSystem {
 
         if (user.message != null) {
             TUI.writeLines(user.username, ALIGN.Center, user.message!!, ALIGN.Center)
+            waitTimeMilli(CMD_WAIT_TIME)
         }
 
     }
