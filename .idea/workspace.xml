@@ -13,21 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fdd6023-2647-4077-997a-5870780d8ccf" name="Changes" comment="MAIN APP">
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/AccessControlSystem__3_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/AccessControlSystem___2_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Software_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Software_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simul.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Simul.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USB_PORT.properties" beforeDir="false" afterPath="$PROJECT_DIR$/USB_PORT.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USERS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/USERS.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/AccessControlSystem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LogFile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/LCD.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/M.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/M.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SerialEmitter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/TUI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Users.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/WaitTime.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/WaitTime.kt" afterDir="false" />
     </list>
     <list id="e04be746-7ebb-4027-b91d-df2637e65338" name="Changes by Bernardo" comment="Changes by Bernardo" />
     <option name="SHOW_DIALOG" value="false" />
@@ -279,7 +270,11 @@
       <workItem from="1685432880801" duration="80000" />
       <workItem from="1685433002301" duration="6000" />
       <workItem from="1685433011725" duration="2000" />
-      <workItem from="1685434511261" duration="323000" />
+      <workItem from="1685434511261" duration="362000" />
+      <workItem from="1685435399988" duration="22000" />
+      <workItem from="1685441855497" duration="4531000" />
+      <workItem from="1685619428487" duration="6000" />
+      <workItem from="1686035359920" duration="4852000" />
     </task>
     <task id="LOCAL-00001" summary="usbport.jar added">
       <created>1678785901078</created>
@@ -400,7 +395,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684499291762</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="MAIN APP">
+      <created>1685434863625</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1685434863625</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,12 +427,12 @@
     <MESSAGE value="Changes by Bernardo" />
     <MESSAGE value="Update" />
     <MESSAGE value="TUI, Users, M" />
-    <MESSAGE value="MAIN APP" />
     <MESSAGE value="APP" />
     <MESSAGE value="Documentação 1" />
     <MESSAGE value="DOCUMENTATION" />
     <MESSAGE value="DOCUMENTATION + Mudança em waitTimeMilli" />
-    <option name="LAST_COMMIT_MESSAGE" value="DOCUMENTATION + Mudança em waitTimeMilli" />
+    <MESSAGE value="MAIN APP" />
+    <option name="LAST_COMMIT_MESSAGE" value="MAIN APP" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

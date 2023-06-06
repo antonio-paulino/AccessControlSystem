@@ -40,7 +40,7 @@ object Users {
         val users = FileAccess.inFromFile(fileName)
         for (user in users) {
 
-            val userargs = user.split(";") // User params are split in a single line using ';'
+            val userargs = user.split(";") //User parameters are separated by ';'
             val (uin, pin, username, message) = userargs
 
             val uinInt = uin.toInt()

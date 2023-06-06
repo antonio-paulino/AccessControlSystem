@@ -25,7 +25,7 @@ fun main() {
  * the system allows the delivery of a text message addressed to the user.
  *
  * The AccessControlSystem is composed of a [LCD] for display, a [KBD] for reading user inputs,  a [DoorMechanism] for opening and closing the door,
- * as well as a [M] for maintenance operations.
+ * as well as [M] for maintenance operations.
  * @property on Indicates whether the Access Control System is on or off. To turn off the system set to false.
  * @see HAL
  * @see SerialEmitter
@@ -109,7 +109,7 @@ object AccessControlSystem {
 
                         if (key == '#') acsChangePin(user) // Change PIN after authorized access
 
-                        if (key == '*' && user.message != null) acsClearMessage(user) // Clear MSG if it exists
+                        if (key == '*') acsClearMessage(user) // Clear MSG if it exists
 
                         openDoor(user)
 
@@ -121,11 +121,11 @@ object AccessControlSystem {
                 }
             }
             M.init() // checks the M key to enter maintenance mode
-            // if after exiting maintenance mode on is set to false via the close command, then the loop will stop running.
+            // if after exiting maintenance mode on is set to false via the close command, then the program will close.
 
         }
-
-        TUI.writeLines("Shutting Down", ALIGN.Center, "...", ALIGN.Center) //Shuts down the system if on is false
+        //Shuts down the system if on is false
+        TUI.writeLines("Shutting Down", ALIGN.Center, "...", ALIGN.Center)
 
         waitTimeMilli(CMD_WAIT_TIME)
 
@@ -220,13 +220,15 @@ object AccessControlSystem {
 
 
     /**
-     * Clears the set user message after authorized access via the [AccessControlSystem].
+     * Clears the set user message if it exists after authorized access via the [AccessControlSystem].
      *
      * The [AccessControlSystem] queries the user for confirmation to delete the message. If the user confirms
      * the deletion of the message, the message is deleted.
      *
      */
     private fun acsClearMessage(user: User) {
+
+        if(user.message == null) return
 
         TUI.writeLines("Clear Message?", ALIGN.Center, "* To confirm ", ALIGN.Center)
 
@@ -305,4 +307,5 @@ object AccessControlSystem {
     }
 
 }
+
 

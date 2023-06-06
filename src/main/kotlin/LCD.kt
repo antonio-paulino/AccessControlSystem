@@ -183,12 +183,12 @@ object LCD {
 
 
     /**
-     * Writes a character to the LCD by calling the [writeDATA] function.
+     * Writes a character to the LCD.
      */
     fun write(c: Char) = writeDATA(c.code)
 
     /**
-     * Writes a string to the LCD by calling the [write] function for every character in the string.
+     * Writes a string to the LCD.
      */
     fun write(text: String) {
         for (char in text) {
@@ -209,7 +209,6 @@ object LCD {
     /**
      * Clears the LCD by using the Clear display command.
      *
-     * The 7th bit indicates the line position, and the 4 low bits indicate the column position.
      */
     fun clear() = writeCMD(1)
 }

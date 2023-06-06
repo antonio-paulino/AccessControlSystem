@@ -1,6 +1,6 @@
 import TUI.ENTRY
 import TUI.ALIGN
-
+import kotlin.math.*
 fun main() {
     M.run()
 }
@@ -28,7 +28,7 @@ object M {
     /**
      * Stores the current M flag value, if true, the maintenance mode runs, if false, it stops.
      */
-    private var maintenance = HAL.isBit(MAINTENANCEMASK)
+    private var maintenance = false
 
     /**
      * initializes the maintenance mode if the system is in maintenance mode, indicated by the M input.
@@ -145,7 +145,7 @@ object M {
             return
         }
 
-        print("${user.username}. Are you sure you want to remove this user? (Y/N)")
+        print("${user.username}. Are you sure you want to remove this user? (Y/N) ")
 
         val confirmation = readln().trim().lowercase()
 
@@ -216,7 +216,7 @@ object M {
     /**
      * Retrieves a string entry from the system manager.
      *
-     * The entry must not exceed the 16 characters, since that is the maximum length supported by the LCD.
+     * The entry must not exceed 16 characters, since that is the maximum length supported by the LCD.
      *
      * @param entry The type of entry (USERNAME, MSG)
      * @return The system manager provided string entry, or null if the entry was aborted.
@@ -233,7 +233,7 @@ object M {
             if (str.isEmpty()) return null
 
             if (str.length > entry.len)
-                println("The $entry must not exceed the char count supported by the LCD (${entry.len}).")
+                println("The $entry must not exceed ${entry.len} chars.")
         }
 
         return str
@@ -243,7 +243,7 @@ object M {
     /**
      * Retrieves an integer entry from the system manager.
      *
-     * The entry must be equal to the amount of digits for the requested entry type, 3 for the UIN and 4 for PIN.
+     * The number value must not be larger than the number implicitly defined by entry length (e.g. 999 for UIN length 3).
      *
      * @param entry The type of entry (UIN, PIN).
      * @return The system manager provided integer entry, or null if the entry was aborted.
@@ -251,19 +251,20 @@ object M {
      *
      */
     private fun getIntEntry(entry: ENTRY): Int? {
+        var maxNum = 1
+        for (i in 0 until entry.len) {maxNum *= 10}
         var num = -1
-        while (num < 0) {
+        while (num !in 0 until maxNum) {
             try {
                 print("$entry: ")
                 val numstr = readln()
 
                 if (numstr.isEmpty()) return null
+                num = numstr.toInt()
 
-                if (numstr.length != entry.len)
-                    println("The $entry must not exceed ${entry.len} digits.")
-                else
-                    num = numstr.toInt()
-                    if (num < 0) println("Value must be positive")
+                if (num < 0) println("Value must be positive")
+                else if (num > maxNum) println("The $entry must not exceed ${entry.len} digits")
+
             } catch (e: NumberFormatException) {
                 println("Value must be a number.")
             }

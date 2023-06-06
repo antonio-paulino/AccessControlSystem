@@ -74,13 +74,13 @@ object TUI {
      */
     private fun clearEntryDigits(line: Int, col: Int, len: Int) {
 
-        LCD.cursor(line, col)
+        LCD.cursor(line, col) //Position the cursor on the first col of the input field
 
         for (i in 0 until len) {
             LCD.write("_") //writes '_' on the input field of the LCD.
         }
 
-        LCD.cursor(line, col)
+        LCD.cursor(line, col) //Reposition the cursor on the first col of the input field for user input
 
     }
 
@@ -188,7 +188,7 @@ object TUI {
      * @param text the text prompt to be displayed
      * @param align the alignment of the text prompt
      * @param line the line to display the prompt on
-     * @param line the type of input entry
+     * @param entry the type of input entry
      * @return The user input as integer, [TIMEOUTCODE] if the timeout is reached, or [ABORTCODE] if the command is aborted.
      */
     fun query(text: String, align: ALIGN, line: LINES, entry: ENTRY): Int {
@@ -203,7 +203,7 @@ object TUI {
         write(entrytext, coloffset, line)
 
 
-        return read(line, text.length + coloffset, entry)
+        return read(line, text.length + coloffset, entry) //text length + col offset = first col of the input field.
 
     }
 
