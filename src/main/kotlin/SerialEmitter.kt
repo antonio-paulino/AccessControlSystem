@@ -21,7 +21,7 @@ fun main() {
  */
 object SerialEmitter {
 
-    enum class Destination(val mask: Int) { LCD(0b00000001), DOOR(0b00000100) }
+    enum class Destination(val mask: Int) { LCD(0b00000010), DOOR(0b00000100) }
 
     /**
      * The wait time in nanoseconds between sending bit signals to the hardware
@@ -31,7 +31,7 @@ object SerialEmitter {
     /**
      * The bit mask of the SDX output to the USB Port
      */
-    private const val SDXMASK = 0b00000010
+    private const val SDXMASK = 0b00000001
 
     /**
      * The bit mask of the SCLK output to the USB Port
@@ -86,12 +86,9 @@ object SerialEmitter {
         HAL.clrBits(addr.mask) //Select the destination Serial Receiver
         waitTimeNano(DELAY)
 
-        HAL.writeBits(SDXMASK, data.shr(4).shl(1)) //Initially write the RS/OC bit
-        clkPulse()
-
-        for (i in 0..3) { //Write the velocity/data bits
+        for (i in 0..4) { //Write frame to LCD
             val sdx = (1.shl(i) and data).shr(i)
-            HAL.writeBits(SDXMASK, sdx.shl(1))
+            HAL.writeBits(SDXMASK, sdx)
             clkPulse()
         }
 

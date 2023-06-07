@@ -31,18 +31,18 @@ object TUI {
 
     /**
      * Refers to a specific type of information to display on the LCD and its length.
-     * [UIN] and [PIN] refer to the length of the input, while [MSG] and [USERNAME] refer to the max amount of characters
-     * that can be displayed on the LCD.
      *
      * @see User
      */
-    enum class ENTRY(val len: Int) { UIN(3), PIN(4), MSG(16), USERNAME(16) }
+    enum class ENTRY(val len: Int) { UIN(3), PIN(4), MSG(MAX_LCD_LEN), USERNAME(MAX_LCD_LEN) }
 
     const val KBDTIMEOUT = 5000.toLong()
 
     const val TIMEOUTCODE = -1
 
     const val ABORTCODE = -2
+
+    private const val MAX_LCD_LEN = 16
 
     val CMD_ABORT_CODES = listOf(ABORTCODE, TIMEOUTCODE)
 

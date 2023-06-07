@@ -57,12 +57,12 @@ object LCD {
     /**
      * A nibble with the RS bit set to 0, to send a command to the LCD
      */
-    private const val CMD_NIBBLE = 0b00000
+    private const val CMD_FRAME = 0b00000
 
     /**
      * A nibble with the RS bit set to 1, to send data to the LCD
      */
-    private const val DATA_NIBBLE = 0b10000
+    private const val DATA_FRAME = 0b00001
 
 
     /**
@@ -99,7 +99,7 @@ object LCD {
      * @param data Data to send
      */
     private fun writeNibbleSerial(rs: Boolean, data: Int) {
-        val datasend = if (rs) DATA_NIBBLE or data else CMD_NIBBLE or data
+        val datasend = if (rs) DATA_FRAME or data.shl(1) else CMD_FRAME or data.shl(1)
         SerialEmitter.send(SerialEmitter.Destination.LCD, datasend)
     }
 

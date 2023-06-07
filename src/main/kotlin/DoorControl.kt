@@ -36,12 +36,12 @@ object DoorMechanism {
     /**
      * Represents the open command for the door mechanism.
      */
-    private const val OPENCMD = 0b10000
+    private const val OPENCMD_FRAME = 0b00001
 
     /**
      * Represents the close command for the door mechanism.
      */
-    private const val CLOSECMD = 0b00000
+    private const val CLOSECMD_FRAME = 0b00000
 
     /**
      * Indicates if the door mechanism is busy.
@@ -61,14 +61,14 @@ object DoorMechanism {
      * Opens the door with the specified velocity
      * @param velocity The velocity at which the door is opened
      */
-    fun open(velocity: Int) = SerialEmitter.send(Destination.DOOR, OPENCMD or velocity)
+    fun open(velocity: Int) = SerialEmitter.send(Destination.DOOR, OPENCMD_FRAME or velocity.shl(1))
 
 
     /**
      * Closes the door with the specified velocity
      * @param velocity The velocity at which the door is closed
      */
-    fun close(velocity: Int) = SerialEmitter.send(Destination.DOOR, CLOSECMD or velocity)
+    fun close(velocity: Int) = SerialEmitter.send(Destination.DOOR, CLOSECMD_FRAME or velocity.shl(1))
 
 
     /**
