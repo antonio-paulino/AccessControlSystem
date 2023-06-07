@@ -34,15 +34,13 @@ object TUI {
      *
      * @see User
      */
-    enum class ENTRY(val len: Int) { UIN(3), PIN(4), MSG(MAX_LCD_LEN), USERNAME(MAX_LCD_LEN) }
+    enum class ENTRY(val len: Int) { UIN(3), PIN(4), MSG(16), USERNAME(16) }
 
     const val KBDTIMEOUT = 5000.toLong()
 
     const val TIMEOUTCODE = -1
 
     const val ABORTCODE = -2
-
-    private const val MAX_LCD_LEN = 16
 
     val CMD_ABORT_CODES = listOf(ABORTCODE, TIMEOUTCODE)
 
