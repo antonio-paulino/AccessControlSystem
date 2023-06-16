@@ -52,12 +52,12 @@ object AccessControlSystem {
     /**
      * The speed at which the door is opened after user authorized access.
      */
-    private const val DOOR_OPEN_SPEED = 0b1000
+     const val DOOR_OPEN_SPEED = 0b1000
 
     /**
      * The speed at which the door is closed after user authorized access.
      */
-    private const val DOOR_CLOSE_SPEED = 0b0010
+     const val DOOR_CLOSE_SPEED = 0b0010
 
 
     var on = false

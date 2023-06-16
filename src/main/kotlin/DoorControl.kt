@@ -43,17 +43,13 @@ object DoorMechanism {
      */
     private const val CLOSECMD_FRAME = 0b00000
 
-    /**
-     * Indicates if the door mechanism is busy.
-     */
-    private var busy = false
 
 
     /**
-     * Initializes the door mechanism by setting the busy flag to false
+     * Initializes the door mechanism by closing the door.
      */
     fun init() {
-        busy = false
+        close(AccessControlSystem.DOOR_CLOSE_SPEED)
     }
 
 
@@ -75,9 +71,7 @@ object DoorMechanism {
      * Checks if the door mechanism has finished the close/open operation
      * @return false if the door mechanism is busy, true otherwise
      */
-    fun finished(): Boolean {
-        busy = SerialEmitter.isBusy()
-        return !busy
-    }
+    fun finished(): Boolean = !SerialEmitter.isBusy()
+
 
 }

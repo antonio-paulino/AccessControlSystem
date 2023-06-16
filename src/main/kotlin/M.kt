@@ -259,11 +259,11 @@ object M {
                 print("$entry: ")
                 val numstr = readln()
 
-                if (numstr.isEmpty()) return null
+                    if (numstr.isEmpty()) return null
                 num = numstr.toInt()
 
                 if (num < 0) println("Value must be positive")
-                else if (num > maxNum) println("The $entry must not exceed ${entry.len} digits")
+                else if (num >= maxNum) println("The $entry must not exceed ${entry.len} digits")
 
             } catch (e: NumberFormatException) {
                 println("Value must be a number.")

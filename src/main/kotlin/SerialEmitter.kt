@@ -46,19 +46,13 @@ object SerialEmitter {
     private const val BUSYMASK = 0b00100000
 
     /**
-     * Flag that represents if the Serial Receiver is busy.
-     */
-    private var isbusy = false
-
-
-    /**
      * Initializes the Door Mechanism Control and LCD Serial Receivers by deselecting them. Sets [isbusy] to false.
      */
     fun init() {
-        isbusy = false
 
         HAL.setBits(Destination.LCD.mask)
         HAL.setBits(Destination.DOOR.mask)
+        HAL.clrBits(SCLKMASK)
 
         waitTimeNano(DELAY)
     }
@@ -101,11 +95,9 @@ object SerialEmitter {
      * Checks if the Door Serial Receiver is busy
      * @return true if the Door Serial Receiver is busy, false otherwise
      */
-    fun isBusy(): Boolean {
+    fun isBusy(): Boolean = HAL.isBit(BUSYMASK)
 
-        isbusy = HAL.isBit(BUSYMASK)
-        return isbusy
 
-    }
+
 
 }
