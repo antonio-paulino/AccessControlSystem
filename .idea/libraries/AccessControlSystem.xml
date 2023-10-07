@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="AccessControlSystem">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/AccessControlSystem.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Software/AccessControlSystem.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
