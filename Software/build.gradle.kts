@@ -17,6 +17,14 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+java {
+    // Specify Java 17 as the default SDK version for Java compilation
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
 kotlin {
+    // Specify Java 17 as the default SDK version for Kotlin compilation
     jvmToolchain(17)
 }
